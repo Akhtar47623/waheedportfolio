@@ -1,12 +1,10 @@
-import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
-import RefinedCinematicDeveloperPortfolio from './pages/RefinedCinematicDeveloperPortfolio';
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import Portfolio from "./pages";
 function App() {
   return (
     <BrowserRouter>
         <Routes>
-			<Route path="/" element={<RefinedCinematicDeveloperPortfolio />} />
-			<Route path="/RefinedCinematicDeveloperPortfolio" element={<RefinedCinematicDeveloperPortfolio />} />
+			<Route path="/" element={<Portfolio />} />
         </Routes>
     </BrowserRouter>
   );

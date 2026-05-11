@@ -1,21 +1,21 @@
 import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation, Pagination, Autoplay } from "swiper/modules";
-import "../../index.css";
+import "../index.css";
 
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import  { useEffect, useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
-import profileImage from "../../assets/waheed.png";
-import cvFile from "../../assets/Waheed_Akhtar_CV.pdf";
+import profileImage from "../assets/waheed.png";
+import cvFile from "../assets/Waheed_Akhtar_CV.pdf";
 import { FaEnvelope, FaLinkedin, FaMapMarkerAlt } from "react-icons/fa";
-import Docurious from "../../assets/docurious.png";
-import ChefPortal from "../../assets/chef-portal.png";
-import Charity from "../../assets/charity.png";
-import HealthCare from "../../assets/health_care.png";
-import Betki from "../../assets/marketing.png";
-import Cloves from "../../assets/cloves.mp4";
+import Docurious from "../assets/docurious.png";
+import ChefPortal from "../assets/chef-portal.png";
+import Charity from "../assets/charity.png";
+import HealthCare from "../assets/health_care.png";
+import Betki from "../assets/marketing.png";
+import Cloves from "../assets/cloves.mp4";
 
 export default () => {
   const [input2, onChangeInput2] = useState("");
