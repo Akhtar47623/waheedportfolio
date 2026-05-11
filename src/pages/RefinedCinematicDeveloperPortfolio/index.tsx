@@ -5,8 +5,10 @@ import "../../index.css";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import React, { useEffect, useRef, useState } from "react";
+import  { useEffect, useRef, useState } from "react";
 import profileImage from "../../assets/waheed.png";
+import cvFile from "../../assets/Waheed_Akhtar_CV.pdf";
+import { FaEnvelope, FaLinkedin, FaMapMarkerAlt } from "react-icons/fa";
 
 export default () => {
   const [input2, onChangeInput2] = useState("");
@@ -175,70 +177,75 @@ export default () => {
             {/* ── NAV ── */}
             <div className="flex justify-between items-center self-stretch bg-[#0D112012] py-4 lg:py-6 px-4 lg:px-20 mb-8 lg:mb-[87px] border border-solid border-[#FFFFFF1A] relative">
 
-{/* Logo */}
-<div className="flex shrink-0 items-center gap-2">
-  <span className="text-[#00F5FF] text-lg font-bold">{"</>"}</span>
-  <span className="text-[#F0EDE8] text-lg lg:text-[21px] font-bold">DEV</span>
-</div>
+            {/* Logo */}
+            <div className="flex shrink-0 items-center gap-2">
+              <span className="text-[#00F5FF] text-lg font-bold">{"</>"}</span>
+              <span className="text-[#F0EDE8] text-lg lg:text-[21px] font-bold">DEV</span>
+            </div>
 
-{/* Desktop nav */}
-<div className="hidden lg:flex shrink-0 items-center gap-3">
-  {navItems.map((item) => (
-    <button
-      key={item.id}
-      className={`text-sm transition ${
-        activeSection === item.id ? "text-[#00F5FF]" : "text-[#8B8FA8]"
-      }`}
-      onClick={() => scrollToSection(item.id)}
-    >
-      {item.label}
-    </button>
-  ))}
-</div>
+            {/* Desktop nav */}
+            <div className="hidden lg:flex shrink-0 items-center gap-3">
+              {navItems.map((item) => (
+                <button
+                  key={item.id}
+                  className={`text-sm transition ${
+                    activeSection === item.id ? "text-[#00F5FF]" : "text-[#8B8FA8]"
+                  }`}
+                  onClick={() => scrollToSection(item.id)}
+                >
+                  {item.label}
+                </button>
+              ))}
+            </div>
 
-{/* Mobile hamburger */}
-<button
-  className="lg:hidden text-[#00F5FF] text-2xl"
-  onClick={() => setMenuOpen(!menuOpen)}
->
-  ☰
-</button>
+            {/* Mobile hamburger */}
+            <button
+              className="lg:hidden text-[#00F5FF] text-2xl"
+              onClick={() => setMenuOpen(!menuOpen)}
+            >
+              ☰
+            </button>
 
-{/* Hire Me button */}
-<button
-  className="hidden lg:flex bg-transparent text-left py-2.5 px-6 rounded-lg border border-[#00F5FF]"
-  onClick={() => alert("Pressed!")}
->
-  <span className="text-[#00F5FF] text-xs">HIRE ME</span>
-</button>
+            {/* Hire Me button */}
+            <button
+              className="hidden lg:flex bg-transparent text-left py-2.5 px-6 rounded-lg border border-[#00F5FF]"
+              onClick={() => {
+                document.getElementById("contact")?.scrollIntoView({
+                  behavior: "smooth",
+                  block: "start",
+                });
+              }}
+            >
+              <span className="text-[#00F5FF] text-xs">HIRE ME</span>
+            </button>
 
-{/* Mobile dropdown menu */}
-{menuOpen && (
-  <div className="absolute top-full left-0 w-full bg-[#0D1120] border-t border-[#FFFFFF1A] flex flex-col lg:hidden z-50">
-    {navItems.map((item) => (
-      <button
-        key={item.id}
-        className={`text-left px-4 py-3 border-b border-[#FFFFFF1A] ${
-          activeSection === item.id ? "text-[#00F5FF]" : "text-[#8B8FA8]"
-        }`}
-        onClick={() => {
-          scrollToSection(item.id);
-          setMenuOpen(false);
-        }}
-      >
-        {item.label}
-      </button>
-    ))}
+            {/* Mobile dropdown menu */}
+            {menuOpen && (
+              <div className="absolute top-full left-0 w-full bg-[#0D1120] border-t border-[#FFFFFF1A] flex flex-col lg:hidden z-50">
+                {navItems.map((item) => (
+                  <button
+                    key={item.id}
+                    className={`text-left px-4 py-3 border-b border-[#FFFFFF1A] ${
+                      activeSection === item.id ? "text-[#00F5FF]" : "text-[#8B8FA8]"
+                    }`}
+                    onClick={() => {
+                      scrollToSection(item.id);
+                      setMenuOpen(false);
+                    }}
+                  >
+                    {item.label}
+                  </button>
+                ))}
 
-    <button
-      className="px-4 py-3 text-[#00F5FF] text-left"
-      onClick={() => alert("Pressed!")}
-    >
-      HIRE ME
-    </button>
-  </div>
-)}
-</div>
+                <button
+                  className="px-4 py-3 text-[#00F5FF] text-left"
+                  onClick={() => alert("Pressed!")}
+                >
+                  HIRE ME
+                </button>
+              </div>
+            )}
+            </div>                                  
 
             {/* ── HERO ── */}
             <div
@@ -253,13 +260,13 @@ export default () => {
                 </div>
 
                 <div className="flex flex-col items-start self-stretch mb-6 lg:mb-[31px]">
-                  <h1 className="text-[52px] sm:text-[68px] lg:text-[86px] font-bold leading-[0.93] tracking-[-0.02em] lg:w-[900px]">
-                    <span className="text-[#F0EDE8]">Building Scalable</span>
-                    <br />
-                    <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#00F5FF] to-[#00F5FF]">
-                      Full-Stack Systems
-                    </span>
-                  </h1>
+                <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-[68px] font-bold leading-[0.93] tracking-[-0.02em] lg:w-[900px]">
+                  <span className="text-[#F0EDE8]">Building Scalable</span>
+                  <br />
+                  <span className="bg-clip-text text-transparent bg-gradient-to-r from-[#00F5FF] to-[#00F5FF]">
+                    Full-Stack Systems
+                  </span>
+                </h1>
                 </div>
 
                 <div className="flex flex-col items-start mb-6 lg:mb-[31px] pl-0 lg:pl-6">
@@ -269,19 +276,30 @@ export default () => {
                 </div>
 
                 <div className="flex flex-wrap items-start gap-4 lg:gap-6">
-                  <button
-                    className="flex flex-col shrink-0 items-start bg-[#00F5FF] text-left py-4 lg:py-[19px] px-8 lg:px-[43px] rounded-lg border-0 glow-pulse"
-                    style={{ boxShadow: "0px 0px 30px #00F5FF4D" }}
-                    onClick={() => alert("Pressed!")}
-                  >
-                    <span className="text-[#080B12] text-base lg:text-lg font-bold">View My Work</span>
-                  </button>
-                  <button
-                    className="flex flex-col shrink-0 items-start bg-[#0D112012] text-left py-4 lg:py-[19px] px-8 lg:px-[43px] rounded-lg border border-solid border-[#FFFFFF1A]"
-                    onClick={() => alert("Pressed!")}
-                  >
-                    <span className="text-[#F0EDE8] text-base lg:text-lg font-bold">Download CV</span>
-                  </button>
+                <button
+                  className="flex flex-col shrink-0 items-start bg-[#00F5FF] text-left py-4 lg:py-[19px] px-8 lg:px-[43px] rounded-lg border-0 glow-pulse"
+                  style={{ boxShadow: "0px 0px 30px #00F5FF4D" }}
+                  onClick={() => {
+                    document.getElementById("work")?.scrollIntoView({ behavior: "smooth" });
+                  }}
+                >
+                  <span className="text-[#080B12] text-base lg:text-lg font-bold">
+                    View My Work
+                  </span>
+                </button>
+                <button
+                  className="flex flex-col shrink-0 items-start bg-[#0D112012] text-left py-4 lg:py-[19px] px-8 lg:px-[43px] rounded-lg border border-solid border-[#FFFFFF1A]"
+                  onClick={() => {
+                    const link = document.createElement("a");
+                    link.href = cvFile; // ✅ FIXED
+                    link.download = "Waheed_Akhtar_CV.pdf";
+                    link.click();
+                  }}
+                >
+                  <span className="text-[#F0EDE8] text-base lg:text-lg font-bold">
+                    Download CV
+                  </span>
+                </button>
                 </div>
               </div>
 
@@ -301,31 +319,31 @@ export default () => {
 
                 {/* Tech tags */}
                 <div className="absolute top-10 flex items-center gap-2">
-  <img
-    src="https://raw.githubusercontent.com/devicons/devicon/master/icons/laravel/laravel-original.svg"
-    alt="Laravel"
-    className="w-4 h-4 -mt-3 sm:mt-0"
-  />
-  <span className="text-[#F0EDE8] text-xs hidden sm:inline">Laravel</span>
-</div>
+                  <img
+                    src="https://raw.githubusercontent.com/devicons/devicon/master/icons/laravel/laravel-original.svg"
+                    alt="Laravel"
+                    className="w-4 h-4 -mt-3 sm:mt-0"
+                  />
+                  <span className="text-[#F0EDE8] text-xs hidden sm:inline">Laravel</span>
+                </div>
 
-<div className="absolute bottom-[180px] right-4 flex items-center gap-2">
-  <img
-    src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original.svg"
-    alt="React"
-    className="w-4 h-4 -mb-20 sm:mb-0"
-  />
-  <span className="text-[#F0EDE8] text-xs hidden sm:inline">React</span>
-</div>
+                <div className="absolute bottom-[180px] right-4 flex items-center gap-2">
+                  <img
+                    src="https://raw.githubusercontent.com/devicons/devicon/master/icons/react/react-original.svg"
+                    alt="React"
+                    className="w-4 h-4 -mb-20 sm:mb-0"
+                  />
+                  <span className="text-[#F0EDE8] text-xs hidden sm:inline">React</span>
+                </div>
 
-<div className="absolute bottom-40 left-[-5px] sm:left-5 flex items-center gap-2">
-  <img
-    src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nodejs/nodejs-original.svg"
-    alt="Node.js"
-    className="w-4 h-4 -mb-20 ml-5 sm:mb-0 sm:ml-0"
-  />
-  <span className="text-[#F0EDE8] text-xs hidden sm:inline">Node.js</span>
-</div>
+                <div className="absolute bottom-40 left-[-5px] sm:left-5 flex items-center gap-2">
+                  <img
+                    src="https://raw.githubusercontent.com/devicons/devicon/master/icons/nodejs/nodejs-original.svg"
+                    alt="Node.js"
+                    className="w-4 h-4 -mb-20 ml-5 sm:mb-0 sm:ml-0"
+                  />
+                  <span className="text-[#F0EDE8] text-xs hidden sm:inline">Node.js</span>
+                </div>  
               </div>
             </div>
 
@@ -356,7 +374,7 @@ export default () => {
               <div className="flex-1 py-0.5 mt-0 lg:mt-4">
                 <div className="flex flex-col items-start self-stretch pb-6 lg:pb-8">
                   <span className="text-[#F0EDE8] text-4xl lg:text-[54px] font-bold lg:w-[372px]">
-                    Engineering &amp; <span className="text-[#00F5FF]">Expertise.</span>
+                  Engineering & <span className="text-[#00F5FF] leading-tight">Expertise.</span>
                   </span>
                 </div>
                 <div className="flex flex-col items-start self-stretch pb-8 lg:pb-12">
@@ -505,17 +523,11 @@ export default () => {
               <div className="flex flex-col sm:flex-row justify-between items-start self-stretch flex-wrap gap-6">
                 <div className="flex flex-col shrink-0 items-start gap-4">
                   <span className="text-[#F0EDE8] text-4xl lg:text-6xl font-bold">
-                    Select <span className="text-[#00F5FF]">Work.</span>
+                  Explore <span className="text-[#00F5FF]">My Work.</span>
                   </span>
                   <span className="text-[#8B8FA8] text-xs tracking-[2px]">
                     CRAFTING DIGITAL EXPERIENCES THROUGH PRECISION CODE.
                   </span>
-                </div>
-
-                <div className="flex shrink-0 items-center bg-[#0D112012] p-1 sm:mt-[52px] gap-2 lg:gap-4 rounded-full border border-[#FFFFFF1A]">
-                  <button className="bg-[#FFFFFF1A] text-[#F0EDE8] text-xs lg:text-sm py-2 px-4 lg:px-6 rounded-full">All</button>
-                  <button className="text-[#8B8FA8] text-xs lg:text-sm py-2 px-4 lg:px-6 rounded-full">Frontend</button>
-                  <button className="text-[#8B8FA8] text-xs lg:text-sm py-2 px-4 lg:px-6 rounded-full">Backend</button>
                 </div>
               </div>
 
@@ -655,9 +667,30 @@ export default () => {
 
                 <div className="flex flex-col self-stretch gap-6">
                   {[
-                    { icon: "✉", bg: "bg-[#00F5FF1A]", border: "border-[#00F5FF33]", iconColor: "text-[#00F5FF]", label: "Email Me", value: "waheed47623@gmail.com" },
-                    { icon: "in", bg: "bg-[#7C3AED1A]", border: "border-[#7C3AED33]", iconColor: "text-violet-400", label: "LinkedIn", value: "linkedin.com/in/waheed-akhtar" },
-                    { icon: "📍", bg: "bg-[#FF4D8D1A]", border: "border-[#FF4D8D33]", iconColor: "text-[#FF4D8D]", label: "Location", value: "Lahore, Pakistan" },
+                 {
+                  icon: <FaEnvelope />,
+                  bg: "bg-[#00F5FF1A]",
+                  border: "border-[#00F5FF33]",
+                  iconColor: "text-[#00F5FF]",
+                  label: "Email Me",
+                  value: "waheed47623@gmail.com"
+                },
+                {
+                  icon: <FaLinkedin />,
+                  bg: "bg-[#7C3AED1A]",
+                  border: "border-[#7C3AED33]",
+                  iconColor: "text-violet-400",
+                  label: "LinkedIn",
+                  value: "linkedin.com/in/waheed-akhtar"
+                },
+                {
+                  icon: <FaMapMarkerAlt />,
+                  bg: "bg-[#FF4D8D1A]",
+                  border: "border-[#FF4D8D33]",
+                  iconColor: "text-[#FF4D8D]",
+                  label: "Location",
+                  value: "Lahore, Pakistan"
+                }
                   ].map((item, i) => (
                     <div key={i} className="flex items-center self-stretch gap-4 lg:gap-6">
                       <div className={`${item.bg} p-3 lg:p-4 rounded-2xl border border-solid ${item.border} shrink-0`}>
