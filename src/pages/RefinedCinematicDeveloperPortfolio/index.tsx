@@ -9,6 +9,12 @@ import  { useEffect, useRef, useState } from "react";
 import profileImage from "../../assets/waheed.png";
 import cvFile from "../../assets/Waheed_Akhtar_CV.pdf";
 import { FaEnvelope, FaLinkedin, FaMapMarkerAlt } from "react-icons/fa";
+import Docurious from "../../assets/docurious.png";
+import ChefPortal from "../../assets/chef-portal.png";
+import Charity from "../../assets/charity.png";
+import HealthCare from "../../assets/health_care.png";
+import Betki from "../../assets/marketing.png";
+import Cloves from "../../assets/cloves.mp4";
 
 export default () => {
   const [input2, onChangeInput2] = useState("");
@@ -39,34 +45,58 @@ export default () => {
 
   const projects = [
     {
-      title: "ERP Dashboard",
+      title: "Event & Challenge Platform",
       category: "Backend",
-      image: "https://images.unsplash.com/photo-1551434678-e076c223a692?q=80&w=1200&auto=format&fit=crop",
+      url: "https://portal.docurious.com",
+      description: "A platform that connects users and service providers, where vendors organize challenges (events) for users to participate in.It automates key processes such as participation tracking and payouts, ensuring a seamless experience for all parties.",
+      tags: ["Laravel", "MySQL", "React", "REST APIs"],
+      image: Docurious,
+      type:"image"
     },
     {
-      title: "Real Estate Platform",
-      category: "Frontend",
-      image: "https://images.unsplash.com/photo-1460317442991-0ec209397118?q=80&w=1200&auto=format&fit=crop",
-    },
-    {
-      title: "AI Voice Assistant",
+      title: "Chef Portal & Order Management Platform",
       category: "Full Stack",
-      image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1200&auto=format&fit=crop",
+      url: "https://prepbychef.com",
+      description: "A platform connecting chefs and users, managing orders, deliveries, and commissions seamlessly. The system automates key processes to make the experience smooth and efficient for everyone..",
+      tags: ["HTML","CSS","JS","Laravel", "MySQL"],
+      image: ChefPortal,
+      type:"image"
     },
     {
-      title: "Ecommerce System",
-      category: "Laravel",
-      image: "https://images.unsplash.com/photo-1523475472560-d2df97ec485c?q=80&w=1200&auto=format&fit=crop",
-    },
-    {
-      title: "AI Voice Assistant",
+      title: "Secure Online Charity & Donation Platform",
       category: "Full Stack",
-      image: "https://images.unsplash.com/photo-1516321318423-f06f85e504b3?q=80&w=1200&auto=format&fit=crop",
+      url: "https://demo-customlinks.com/nationempower_dev",
+      description: "This charity website is a full-stack web application that enables users to donate online using PayPal and Stripe payment gateways. It includes secure payment processing, responsive UI, donation management, and a scalable backend architecture.",
+      tags: ["React Js", "Node.js", "Python", "OpenAI"],
+      image: Charity,
+      type:"image"
     },
     {
-      title: "Ecommerce System",
-      category: "Laravel",
-      image: "https://images.unsplash.com/photo-1523475472560-d2df97ec485c?q=80&w=1200&auto=format&fit=crop",
+      title: "Biteki Marketing – Creative Agency Platform",
+      category: "Full Stack",
+      url: "https://demo-customlinks.com/biteki_dev",
+      description: "Creative social media marketing and food photography website for UK restaurants, offering content shoots, short-form videos, and flexible, no-contract marketing plans.",
+      tags: ["HTML","CSS","JS","Laravel", "MySQL"],
+      image: Betki,
+      type:"image"
+    },
+    {
+      title: "Healthcare Staffing NW",
+      category: "Full Stack",
+      url: "https://demo-customlinks.com/health_care_dev",
+      description: "A modern healthcare staffing agency website designed to support medical professionals by simplifying job placement, promoting work–life balance, and building long-term partnerships through flexible and supportive staffing solutions.",
+      tags: ["Html", "CSS", "Js", "PHP", "Laravel", "MySQL"],
+      image:HealthCare,
+      type:"image"
+    },
+    {
+      title: "ClovesRX Global — Prescription Delivery",
+      category: "Full Stack",
+      url: "#",
+      description: "A prescription delivery platform built to support secure and on-time medication delivery for pharmacies across Southern California, helping streamline prescription fulfillment and improve patient access to essential medications.",
+      tags: ["Html", "CSS", "Js", "PHP", "Laravel", "MySQL"],
+      image:Cloves,
+      type:"video"
     },
   ];
 
@@ -519,7 +549,7 @@ export default () => {
             </div>
 
             {/* ── WORK / PROJECTS ── */}
-            <div className="flex flex-col self-stretch bg-[#00000033] py-12 lg:py-[100px] px-4 lg:px-20 mb-12 lg:mb-[100px] gap-10 lg:gap-16 reveal-up delay-3" id="work">
+            <div className="flex flex-col self-stretch bg-[#00000033] py-12 lg:py-[100px]  lg:mb-[100px] gap-10 lg:gap-16 reveal-up delay-3" id="work">
               <div className="flex flex-col sm:flex-row justify-between items-start self-stretch flex-wrap gap-6">
                 <div className="flex flex-col shrink-0 items-start gap-4">
                   <span className="text-[#F0EDE8] text-4xl lg:text-6xl font-bold">
@@ -531,39 +561,121 @@ export default () => {
                 </div>
               </div>
 
-              <Swiper
-                modules={[Navigation, Pagination, Autoplay]}
-                spaceBetween={20}
-                slidesPerView={1}
-                autoplay={false}
-                pagination={{ clickable: true }}
-                navigation
-                breakpoints={{
-                  640: { slidesPerView: 2 },
-                  1024: { slidesPerView: 3 },
-                }}
-                className="w-full pb-10"
-              >
-                {projects.map((project, index) => (
-                  <SwiperSlide key={index}>
-                    <div className="group relative overflow-hidden rounded-3xl border border-[#FFFFFF1A] bg-[#0D112012]">
-                      <div
-                        className="h-[300px] sm:h-[400px] lg:h-[500px] bg-cover bg-center transition-all duration-500 group-hover:scale-105"
-                        style={{ backgroundImage: `url(${project.image})` }}
-                      />
-                      <div className="absolute inset-0 bg-gradient-to-t from-black/90 via-black/20 to-transparent" />
-                      <div className="absolute bottom-0 left-0 p-6 lg:p-8 flex flex-col gap-3">
-                        <span className="text-[#00F5FF] text-xs lg:text-sm uppercase tracking-[2px]">{project.category}</span>
-                        <h3 className="text-[#F0EDE8] text-xl lg:text-3xl font-semibold">{project.title}</h3>
-                        <button className="w-fit mt-2 text-xs lg:text-sm text-[#F0EDE8] border border-[#FFFFFF22] px-4 lg:px-5 py-2 rounded-full hover:bg-[#00F5FF] hover:text-black transition-all duration-300">
-                          View Project
-                        </button>
-                      </div>
-                    </div>
-                  </SwiperSlide>
-                ))}
-              </Swiper>
-            </div>
+             {/* Slider wrapper — extra horizontal padding makes room for outside arrows */}
+                  <div className="relative px-8 lg:px-12">
+
+                  {/* Custom Prev Arrow */}
+                  <button
+                    className="swiper-btn-prev absolute left-0 top-1/2 -translate-y-1/2 z-10
+                      w-8 h-8 rounded-full border border-[#FFFFFF22] bg-[#0D1120]
+                      flex items-center justify-center
+                      text-[#8B8FA8] hover:text-[#00F5FF] hover:border-[#00F5FF]
+                      transition-all duration-300 text-sm"
+                  >
+                    ‹
+                  </button>
+
+                  {/* Custom Next Arrow */}
+                  <button
+                    className="swiper-btn-next absolute right-0 top-1/2 -translate-y-1/2 z-10
+                      w-8 h-8 rounded-full border border-[#FFFFFF22] bg-[#0D1120]
+                      flex items-center justify-center
+                      text-[#8B8FA8] hover:text-[#00F5FF] hover:border-[#00F5FF]
+                      transition-all duration-300 text-sm"
+                  >
+                    ›
+                  </button>
+
+                  <Swiper
+                    modules={[Navigation, Pagination, Autoplay]}
+                    spaceBetween={20}
+                    slidesPerView={1}
+                    autoplay={false}
+                    pagination={{ clickable: true }}
+                    navigation={{
+                      prevEl: ".swiper-btn-prev",
+                      nextEl: ".swiper-btn-next",
+                    }}
+                    breakpoints={{
+                      640: { slidesPerView: 2 },
+                      1024: { slidesPerView: 3 },
+                    }}
+                    className="w-full pb-10"
+                  >
+                    {projects.map((project, index) => (
+                      <SwiperSlide key={index}>
+                        <div className="flex flex-col rounded-3xl border border-[#FFFFFF1A] bg-[#0D1120] overflow-hidden">
+
+                          {/* Browser mockup frame */}
+                          <div className="bg-[#1A1D2E] px-3 pt-3 pb-0">
+                            <div className="bg-[#0D1120] rounded-t-xl px-3 py-2 flex items-center gap-2">
+                              <div className="flex items-center gap-1.5">
+                                <div className="w-2.5 h-2.5 rounded-full bg-[#FF5F57]" />
+                                <div className="w-2.5 h-2.5 rounded-full bg-[#FEBC2E]" />
+                                <div className="w-2.5 h-2.5 rounded-full bg-[#28C840]" />
+                              </div>
+                              <div className="flex-1 bg-[#1A1D2E] rounded-full px-3 py-1 mx-2">
+                                <span className="text-[#8B8FA8] text-[10px]">
+                                  {project.url || "www.project-demo.com"}
+                                </span>
+                              </div>
+                            </div>
+                            <div className="overflow-hidden rounded-none">
+                              {project.type === "video" ? (
+                               <video
+                               src={project.image}
+                               className="w-full h-[200px] sm:h-[220px] lg:h-[240px] object-cover transition-transform duration-500 group-hover:scale-105 rounded-lg"
+                               controls
+                               playsInline
+                             />
+                              ) : (
+                                <img
+                                  src={project.image}
+                                  alt={project.title}
+                                  className="w-full h-[200px] sm:h-[220px] lg:h-[240px] object-cover transition-transform duration-500 group-hover:scale-105 rounded-lg"
+                                />
+                              )}
+                            </div>
+                          </div>
+
+                          {/* Card body */}
+                          <div className="flex flex-col p-5 lg:p-6 gap-4">
+                            <span className="text-[#00F5FF] text-[10px] uppercase tracking-[2px]">
+                              {project.category}
+                            </span>
+                            <h3 className="text-[#F0EDE8] text-lg lg:text-xl font-bold leading-tight h-14">
+                              {project.title}
+                            </h3>
+                            <p className="text-[#8B8FA8] text-sm leading-6 h-[120px]">
+                              {project.description}
+                            </p>
+                            <div className="flex flex-wrap gap-2">
+                              {project.tags?.map((tag: string) => (
+                                <span
+                                  key={tag}
+                                  className="text-[#8B8FA8] text-[10px] bg-[#FFFFFF0D] border border-[#FFFFFF1A] px-3 py-1 rounded-full"
+                                >
+                                  {tag}
+                                </span>
+                              ))}
+                            </div>
+                            <a
+                              href={project.url}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="w-fit mt-1 text-xs lg:text-sm text-[#F0EDE8] border border-[#FFFFFF22] px-5 py-2 rounded-full hover:bg-[#00F5FF] hover:text-[#080B12] transition-all duration-300 inline-block"
+                            >
+                              View Project →
+                            </a>
+                          </div>
+
+                        </div>
+                      </SwiperSlide>
+                    ))}
+                  </Swiper>
+
+                  </div>
+                </div>
 
             {/* ── TIMELINE ── */}
             <div className="flex flex-col items-center mb-16 lg:mb-[206px] px-4 lg:px-0 w-full reveal-up delay-3">
