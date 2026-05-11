@@ -6,6 +6,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import  { useEffect, useRef, useState } from "react";
+import emailjs from "@emailjs/browser";
 import profileImage from "../../assets/waheed.png";
 import cvFile from "../../assets/Waheed_Akhtar_CV.pdf";
 import { FaEnvelope, FaLinkedin, FaMapMarkerAlt } from "react-icons/fa";
@@ -18,6 +19,11 @@ import Cloves from "../../assets/cloves.mp4";
 
 export default () => {
   const [input2, onChangeInput2] = useState("");
+  const [email, setEmail] = useState("");
+  const [message, setMessage] = useState("");
+  const [isSending, setIsSending] = useState(false);
+  const [sendError, setSendError] = useState<string | null>(null);
+  const [sendSuccess, setSendSuccess] = useState(false);
   const [activeSection, setActiveSection] = useState("work");
   const [viewportWidth, setViewportWidth] = useState(
     typeof window !== "undefined" ? window.innerWidth : 1440
@@ -99,6 +105,62 @@ export default () => {
       type:"video"
     },
   ];
+
+  const onSubmitContact = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setSendError(null);
+    setSendSuccess(false);
+
+    const fullName = input2.trim();
+    const fromEmail = email.trim();
+    const msg = message.trim();
+
+    if (!fullName || !fromEmail || !msg) {
+      setSendError("Please fill in name, email, and message.");
+      return;
+    }
+    // Simple email sanity check (avoid blocking valid but uncommon emails)
+    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(fromEmail)) {
+      setSendError("Please enter a valid email address.");
+      return;
+    }
+
+    const env = (import.meta as any).env as {
+      VITE_EMAILJS_SERVICE_ID?: string;
+      VITE_EMAILJS_TEMPLATE_ID?: string;
+      VITE_EMAILJS_PUBLIC_KEY?: string;
+    };
+    const serviceId = env.VITE_EMAILJS_SERVICE_ID;
+    const templateId = env.VITE_EMAILJS_TEMPLATE_ID;
+    const publicKey = env.VITE_EMAILJS_PUBLIC_KEY;
+
+    if (!serviceId || !templateId || !publicKey) {
+      setSendError("Missing EmailJS configuration. Check your .env file.");
+      return;
+    }
+
+    // try {
+      setIsSending(true);
+      await emailjs.send(
+        serviceId,
+        templateId,
+        {
+          from_name: fullName,
+          from_email: fromEmail,
+          message: msg,
+        },
+        { publicKey }
+      );
+      setSendSuccess(true);
+      onChangeInput2("");
+      setEmail("");
+      setMessage("");
+    // } catch {
+    //   setSendError("Failed to send. Please try again in a moment.");
+    // } finally {
+    //   setIsSending(false);
+    // }
+  };
 
   const scrollToSection = (sectionId: string) => {
     const section = document.getElementById(sectionId);
@@ -305,30 +367,26 @@ export default () => {
                   </span>
                 </div>
 
-                <div className="flex flex-wrap items-start gap-4 lg:gap-6">
+                <div className="flex flex-row flex-wrap sm:flex-wrap items-center gap-3 lg:gap-6">
                 <button
-                  className="flex flex-col shrink-0 items-start bg-[#00F5FF] text-left py-4 lg:py-[19px] px-8 lg:px-[43px] rounded-lg border-0 glow-pulse"
+                  className="flex items-center justify-center bg-[#00F5FF] text-left py-2 px-4 sm:py-3 sm:px-6 lg:py-[19px] lg:px-[43px] rounded-lg border-0 text-xs sm:text-sm lg:text-lg font-bold text-[#080B12] glow-pulse"
                   style={{ boxShadow: "0px 0px 30px #00F5FF4D" }}
                   onClick={() => {
                     document.getElementById("work")?.scrollIntoView({ behavior: "smooth" });
                   }}
                 >
-                  <span className="text-[#080B12] text-base lg:text-lg font-bold">
-                    View My Work
-                  </span>
+                  View My Work
                 </button>
                 <button
-                  className="flex flex-col shrink-0 items-start bg-[#0D112012] text-left py-4 lg:py-[19px] px-8 lg:px-[43px] rounded-lg border border-solid border-[#FFFFFF1A]"
+                  className="flex items-center justify-center bg-[#0D112012] text-left py-2 px-4 sm:py-3 sm:px-6 lg:py-[19px] lg:px-[43px] rounded-lg border border-solid border-[#FFFFFF1A] text-xs sm:text-sm lg:text-lg font-bold text-[#F0EDE8]"
                   onClick={() => {
                     const link = document.createElement("a");
-                    link.href = cvFile; // ✅ FIXED
+                    link.href = cvFile;
                     link.download = "Waheed_Akhtar_CV.pdf";
                     link.click();
                   }}
                 >
-                  <span className="text-[#F0EDE8] text-base lg:text-lg font-bold">
-                    Download CV
-                  </span>
+                  Download CV
                 </button>
                 </div>
               </div>
@@ -403,7 +461,7 @@ export default () => {
               {/* Right text */}
               <div className="flex-1 py-0.5 mt-0 lg:mt-4">
                 <div className="flex flex-col items-start self-stretch pb-6 lg:pb-8">
-                  <span className="text-[#F0EDE8] text-4xl lg:text-[54px] font-bold lg:w-[372px]">
+                  <span className="text-[#F0EDE8] text-2xl sm:text-3xl lg:text-6xl font-bold lg:w-[372px]">
                   Engineering & <span className="text-[#00F5FF] leading-tight">Expertise.</span>
                   </span>
                 </div>
@@ -466,7 +524,7 @@ export default () => {
             {/* ── SKILLS ── */}
             <div className="flex flex-col self-stretch mb-12 lg:mb-[100px] px-4 lg:mx-20 lg:px-0 gap-10 lg:gap-16 reveal-up delay-2" id="skills">
               <div className="flex flex-col items-center self-stretch">
-                <span className="text-[#F0EDE8] text-3xl lg:text-[42px] font-bold">
+                <span className="text-[#F0EDE8] text-2xl sm:text-3xl lg:text-6xl font-bold">
                   Technical <span className="text-[#00F5FF]">Stack.</span>
                 </span>
               </div>
@@ -552,12 +610,15 @@ export default () => {
             <div className="flex flex-col self-stretch bg-[#00000033] py-12 lg:py-[100px]  lg:mb-[100px] gap-10 lg:gap-16 reveal-up delay-3" id="work">
               <div className="flex flex-col sm:flex-row justify-between items-start self-stretch flex-wrap gap-6">
                 <div className="flex flex-col shrink-0 items-start gap-4">
-                  <span className="text-[#F0EDE8] text-4xl lg:text-6xl font-bold">
-                  Explore <span className="text-[#00F5FF]">My Work.</span>
+                <div className="flex flex-col items-center lg:items-start text-center lg:text-left">
+                  <span className="text-[#F0EDE8] text-2xl sm:text-3xl lg:text-6xl font-bold leading-tight">
+                    Explore <span className="text-[#00F5FF]">My Work.</span>
                   </span>
-                  <span className="text-[#8B8FA8] text-xs tracking-[2px]">
+
+                  <span className="text-[#8B8FA8] text-[10px] sm:text-xs lg:text-sm tracking-[1px] sm:tracking-[2px] mt-2">
                     CRAFTING DIGITAL EXPERIENCES THROUGH PRECISION CODE.
                   </span>
+                </div>
                 </div>
               </div>
 
@@ -679,8 +740,8 @@ export default () => {
 
             {/* ── TIMELINE ── */}
             <div className="flex flex-col items-center mb-16 lg:mb-[206px] px-4 lg:px-0 w-full reveal-up delay-3">
-              <div className="flex flex-col items-start pb-12 lg:pb-20 w-full lg:w-auto text-center lg:text-left">
-                <span className="text-[#F0EDE8] text-4xl lg:text-5xl font-bold self-center lg:self-auto">
+              <div className="flex flex-col items-center lg:items-start pb-12 lg:pb-20 w-full lg:w-auto text-center lg:text-left">
+                <span className="text-[#F0EDE8] text-2xl sm:text-3xl lg:text-6xl font-bold">
                   Journey &amp; <span className="text-[#00F5FF]">Growth.</span>
                 </span>
               </div>
@@ -773,7 +834,7 @@ export default () => {
             >
               {/* Left */}
               <div className="flex flex-1 flex-col lg:mr-20 gap-8 lg:gap-12 w-full">
-                <span className="text-[#F0EDE8] text-3xl lg:text-[65px] leading-tight font-bold">
+                <span className="text-[#F0EDE8] text-2xl sm:text-3xl lg:text-6xl leading-tight font-bold">
                   Let's Build <span className="text-[#00F5FF]">Something Great.</span>
                 </span>
 
@@ -785,7 +846,8 @@ export default () => {
                   border: "border-[#00F5FF33]",
                   iconColor: "text-[#00F5FF]",
                   label: "Email Me",
-                  value: "waheed47623@gmail.com"
+                  value: "waheed47623@gmail.com",
+                  link: "mailto:waheed47623@gmail.com",
                 },
                 {
                   icon: <FaLinkedin />,
@@ -793,7 +855,8 @@ export default () => {
                   border: "border-[#7C3AED33]",
                   iconColor: "text-violet-400",
                   label: "LinkedIn",
-                  value: "linkedin.com/in/waheed-akhtar"
+                  value: "linkedin.com/in/waheed-akhtar",
+                  link: "https://linkedin.com/in/waheed-akhtar",
                 },
                 {
                   icon: <FaMapMarkerAlt />,
@@ -801,7 +864,8 @@ export default () => {
                   border: "border-[#FF4D8D33]",
                   iconColor: "text-[#FF4D8D]",
                   label: "Location",
-                  value: "Lahore, Pakistan"
+                  value: "Lahore, Pakistan",
+                  link: "https://maps.google.com/?q=Lahore,Pakistan",
                 }
                   ].map((item, i) => (
                     <div key={i} className="flex items-center self-stretch gap-4 lg:gap-6">
@@ -810,7 +874,14 @@ export default () => {
                       </div>
                       <div className="flex flex-col shrink-0 items-start">
                         <span className="text-[#8B8FA8] text-xs">{item.label}</span>
-                        <span className="text-[#F0EDE8] text-base lg:text-xl font-bold break-all">{item.value}</span>
+                        <a
+                          href={item.label === "Email Me" ? `mailto:${item.value}` : item.link}
+                          target={item.label !== "Email Me" ? "_blank" : undefined}
+                          rel="noopener noreferrer"
+                          className="text-[#F0EDE8] text-base lg:text-xl font-bold break-all hover:text-[#00F5FF] transition-colors duration-300"
+                        >
+                          {item.value}
+                        </a>
                       </div>
                     </div>
                   ))}
@@ -818,7 +889,7 @@ export default () => {
               </div>
 
               {/* Right form */}
-              <div className="flex flex-1 flex-col w-full gap-6">
+              <form className="flex flex-1 flex-col w-full gap-6" onSubmit={onSubmitContact}>
                 <div className="flex flex-col sm:flex-row justify-center items-center self-stretch gap-4 lg:gap-6">
                   <div className="flex flex-col w-full items-start gap-2">
                     <span className="text-[#8B8FA8] text-[10px] ml-2">Full Name</span>
@@ -828,6 +899,8 @@ export default () => {
                       value={input2}
                       onChange={(e) => onChangeInput2(e.target.value)}
                       className="w-full text-gray-400 bg-[#FFFFFF05] text-base py-4 lg:py-[22px] px-6 rounded-xl border border-solid border-[#FFFFFF1A] outline-none"
+                      autoComplete="name"
+                      disabled={isSending}
                     />
                   </div>
                   <div className="flex flex-col w-full items-start gap-2">
@@ -835,7 +908,11 @@ export default () => {
                     <input
                       type="email"
                       placeholder="john@example.com"
+                      value={email}
+                      onChange={(e) => setEmail(e.target.value)}
                       className="w-full text-gray-400 bg-[#FFFFFF05] text-base py-4 lg:py-[22px] px-6 rounded-xl border border-solid border-[#FFFFFF1A] outline-none"
+                      autoComplete="email"
+                      disabled={isSending}
                     />
                   </div>
                 </div>
@@ -845,18 +922,30 @@ export default () => {
                   <textarea
                     placeholder="Tell me about your project..."
                     rows={6}
+                    value={message}
+                    onChange={(e) => setMessage(e.target.value)}
                     className="w-full text-gray-400 bg-[#FFFFFF05] text-base py-4 px-6 rounded-xl border border-solid border-[#FFFFFF1A] outline-none resize-none"
+                    disabled={isSending}
                   />
                 </div>
 
                 <button
-                  className="flex flex-col items-center self-stretch bg-[#00F5FF] text-left py-4 lg:py-5 rounded-xl border-0 transition-all duration-300 hover:scale-[1.01]"
+                  type="submit"
+                  className="flex flex-col items-center self-stretch bg-[#00F5FF] text-left py-4 lg:py-5 rounded-xl border-0 transition-all duration-300 hover:scale-[1.01] disabled:opacity-60 disabled:hover:scale-100"
                   style={{ boxShadow: "0px 0px 30px #00F5FF33" }}
-                  onClick={() => alert("Pressed!")}
+                  disabled={isSending}
                 >
-                  <span className="text-[#080B12] text-base lg:text-lg font-bold">Send Message</span>
+                  <span className="text-[#080B12] text-base lg:text-lg font-bold">
+                    {isSending ? "Sending..." : "Send Message"}
+                  </span>
                 </button>
-              </div>
+
+                {sendError ? (
+                  <div className="text-red-300 text-sm">{sendError}</div>
+                ) : sendSuccess ? (
+                  <div className="text-emerald-300 text-sm">Message sent successfully.</div>
+                ) : null}
+              </form>
             </div>
 
             {/* ── FOOTER ── */}
