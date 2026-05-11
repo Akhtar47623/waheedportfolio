@@ -25,6 +25,7 @@ export default () => {
   const [sendError, setSendError] = useState<string | null>(null);
   const [sendSuccess, setSendSuccess] = useState(false);
   const [activeSection, setActiveSection] = useState("work");
+  const [navScrolled, setNavScrolled] = useState(false);
   const [viewportWidth, setViewportWidth] = useState(
     typeof window !== "undefined" ? window.innerWidth : 1440
   );
@@ -35,6 +36,13 @@ export default () => {
     const onResize = () => setViewportWidth(window.innerWidth);
     window.addEventListener("resize", onResize);
     return () => window.removeEventListener("resize", onResize);
+  }, []);
+
+  useEffect(() => {
+    const onScroll = () => setNavScrolled(window.scrollY > 10);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
   }, []);
 
   const baseWidth = 1440;
@@ -230,7 +238,7 @@ export default () => {
   }, [viewportWidth]);
 
   return (
-    <div className="flex flex-col bg-[#080B12] w-full overflow-x-hidden relative text-[#F0EDE8]">
+    <div className="flex flex-col bg-[#080B12] w-full overflow-x-clip relative text-[#F0EDE8]">
       {/* Ambient background */}
       <div className="ambient-stage">
         <div className="ambient-grid"></div>
@@ -260,14 +268,21 @@ export default () => {
 
       {/* ── INNER wrapper: zoom only on desktop ── */}
       <div className="relative z-10 w-full">
+        {/* ── NAV (full-width bottom border) ── */}
         <div
-          className="origin-top lg:mx-auto"
-          style={isDesktop ? { width: `${baseWidth}px`, zoom: scale } : {}}
+          className={`w-full sticky top-0 z-[10001] border-b border-solid border-[#FFFFFF1A] mb-8 lg:mb-[87px] transition ${
+            navScrolled
+              ? "bg-[#0D1120] backdrop-blur-md shadow-[0_10px_30px_rgba(0,0,0,0.35)]"
+              : "bg-transparent shadow-none backdrop-blur-0"
+          }`}
         >
-          <div className="flex flex-col items-center self-stretch">
-
-            {/* ── NAV ── */}
-            <div className="flex justify-between items-center self-stretch bg-[#0D112012] py-4 lg:py-6 px-4 lg:px-20 mb-8 lg:mb-[87px] border border-solid border-[#FFFFFF1A] relative">
+          <div
+            className="origin-top lg:mx-auto"
+            style={isDesktop ? { width: `${baseWidth}px`, zoom: scale } : {}}
+          >
+            <div
+              className="flex justify-between items-center self-stretch py-4 lg:py-6 px-4 lg:px-20 relative"
+            >
 
             {/* Logo */}
             <div className="flex shrink-0 items-center gap-2">
@@ -337,7 +352,15 @@ export default () => {
                 </button>
               </div>
             )}
-            </div>                                  
+            </div>
+          </div>
+        </div>
+
+        <div
+          className="origin-top lg:mx-auto"
+          style={isDesktop ? { width: `${baseWidth}px`, zoom: scale } : {}}
+        >
+          <div className="flex flex-col items-center self-stretch">
 
             {/* ── HERO ── */}
             <div
@@ -523,14 +546,16 @@ export default () => {
 
             {/* ── SKILLS ── */}
             <div className="flex flex-col self-stretch mb-12 lg:mb-[100px] px-4 lg:mx-20 lg:px-0 gap-10 lg:gap-16 reveal-up delay-2" id="skills">
+  
               <div className="flex flex-col items-center self-stretch">
                 <span className="text-[#F0EDE8] text-2xl sm:text-3xl lg:text-6xl font-bold">
                   Technical <span className="text-[#00F5FF]">Stack.</span>
                 </span>
               </div>
 
-              <div className="flex flex-col lg:flex-row items-stretch self-stretch gap-6 lg:gap-12">
-                {/* Frontend */}
+              <div className="flex flex-col lg:flex-row items-stretch self-stretch gap-6 lg:gap-8">
+
+                {/* ── Frontend ── */}
                 <div className="flex flex-1 flex-col bg-[#0D112012] p-6 lg:p-10 gap-8 rounded-3xl border border-solid border-[#FFFFFF1A]">
                   <div className="flex justify-between items-center self-stretch">
                     <span className="text-[#00F5FF] text-sm">Frontend Development</span>
@@ -538,28 +563,45 @@ export default () => {
                       <span className="text-[#00F5FF] text-xs font-bold">UI</span>
                     </div>
                   </div>
+
                   <div className="flex flex-col self-stretch gap-6">
+                    {/* React */}
                     <div className="flex flex-col self-stretch gap-2">
                       <div className="flex justify-between items-center self-stretch">
                         <span className="text-[#F0EDE8] text-sm">React.js</span>
-                        <span className="text-[#F0EDE8] text-sm">90%</span>
+                        <span className="text-[#F0EDE8] text-sm">85%</span>
                       </div>
-                      <div className="items-start self-stretch bg-[#FFFFFF0D] rounded-[9999px]">
-                        <div className="bg-[#00F5FF] h-1.5 rounded-[9999px]" style={{ width: "90%", boxShadow: "0px 0px 10px #00F5FF" }} />
+                      <div className="self-stretch bg-[#FFFFFF0D] rounded-[9999px]">
+                        <div className="bg-[#00F5FF] h-1.5 rounded-[9999px]" style={{ width: "85%", boxShadow: "0px 0px 10px #00F5FF" }} />
                       </div>
                     </div>
+
+                    {/* JavaScript */}
                     <div className="flex flex-col self-stretch gap-2">
                       <div className="flex justify-between items-center self-stretch">
-                        <span className="text-[#F0EDE8] text-sm">Tailwind CSS</span>
+                        <span className="text-[#F0EDE8] text-sm">JavaScript / jQuery</span>
+                        <span className="text-[#F0EDE8] text-sm">88%</span>
+                      </div>
+                      <div className="self-stretch bg-[#FFFFFF0D] rounded-[9999px]">
+                        <div className="bg-[#00F5FF] h-1.5 rounded-[9999px]" style={{ width: "88%", boxShadow: "0px 0px 10px #00F5FF" }} />
+                      </div>
+                    </div>
+
+                    {/* CSS Frameworks */}
+                    <div className="flex flex-col self-stretch gap-2">
+                      <div className="flex justify-between items-center self-stretch">
+                        <span className="text-[#F0EDE8] text-sm">Tailwind / Bootstrap / Chakra UI</span>
                         <span className="text-[#F0EDE8] text-sm">92%</span>
                       </div>
-                      <div className="items-start self-stretch bg-[#FFFFFF0D] rounded-[9999px]">
+                      <div className="self-stretch bg-[#FFFFFF0D] rounded-[9999px]">
                         <div className="bg-[#00F5FF] h-1.5 rounded-[9999px]" style={{ width: "92%", boxShadow: "0px 0px 10px #00F5FF" }} />
                       </div>
                     </div>
+
+                    {/* Tags */}
                     <div className="flex flex-wrap items-center self-stretch py-2 gap-2">
-                      {["HTML5", "CSS3", "JavaScript", "Bootstrap", "Chakra UI", "jQuery"].map((item) => (
-                        <button key={item} className="flex flex-col shrink-0 items-start bg-[#FFFFFF0D] text-left py-1 px-3 rounded-[9999px] border border-solid border-[#FFFFFF1A]">
+                      {["HTML5", "CSS3", "JavaScript", "jQuery", "Ajax", "React", "Bootstrap", "Tailwind CSS", "Chakra UI"].map((item) => (
+                        <button key={item} className="bg-[#FFFFFF0D] text-left py-1 px-3 rounded-[9999px] border border-solid border-[#FFFFFF1A]">
                           <span className="text-[#8B8FA8] text-[10px]">{item}</span>
                         </button>
                       ))}
@@ -567,7 +609,7 @@ export default () => {
                   </div>
                 </div>
 
-                {/* Backend */}
+                {/* ── Backend ── */}
                 <div className="flex flex-1 flex-col bg-[#0D112012] p-6 lg:p-10 gap-8 rounded-3xl border border-solid border-[#FFFFFF1A]">
                   <div className="flex justify-between items-center self-stretch">
                     <span className="text-violet-400 text-sm">Backend Engineering</span>
@@ -575,34 +617,106 @@ export default () => {
                       <span className="text-violet-400 text-xs font-bold">API</span>
                     </div>
                   </div>
+
                   <div className="flex flex-col self-stretch gap-6">
+                    {/* PHP / Laravel */}
                     <div className="flex flex-col self-stretch gap-2">
                       <div className="flex justify-between items-center self-stretch">
                         <span className="text-[#F0EDE8] text-sm">PHP / Laravel</span>
                         <span className="text-[#F0EDE8] text-sm">95%</span>
                       </div>
-                      <div className="items-start self-stretch bg-[#FFFFFF0D] rounded-[9999px]">
+                      <div className="self-stretch bg-[#FFFFFF0D] rounded-[9999px]">
                         <div className="bg-violet-500 h-1.5 rounded-[9999px]" style={{ width: "95%", boxShadow: "0px 0px 10px #7C3AED" }} />
                       </div>
                     </div>
+
+                    {/* REST APIs */}
                     <div className="flex flex-col self-stretch gap-2">
                       <div className="flex justify-between items-center self-stretch">
-                        <span className="text-[#F0EDE8] text-sm">MySQL / PostgreSQL</span>
+                        <span className="text-[#F0EDE8] text-sm">REST APIs / OOP</span>
+                        <span className="text-[#F0EDE8] text-sm">93%</span>
+                      </div>
+                      <div className="self-stretch bg-[#FFFFFF0D] rounded-[9999px]">
+                        <div className="bg-violet-500 h-1.5 rounded-[9999px]" style={{ width: "93%", boxShadow: "0px 0px 10px #7C3AED" }} />
+                      </div>
+                    </div>
+
+                    {/* Third-party APIs */}
+                    <div className="flex flex-col self-stretch gap-2">
+                      <div className="flex justify-between items-center self-stretch">
+                        <span className="text-[#F0EDE8] text-sm">Third-Party API Integration</span>
                         <span className="text-[#F0EDE8] text-sm">90%</span>
                       </div>
-                      <div className="items-start self-stretch bg-[#FFFFFF0D] rounded-[9999px]">
+                      <div className="self-stretch bg-[#FFFFFF0D] rounded-[9999px]">
                         <div className="bg-violet-500 h-1.5 rounded-[9999px]" style={{ width: "90%", boxShadow: "0px 0px 10px #7C3AED" }} />
                       </div>
                     </div>
+
+                    {/* Tags */}
                     <div className="flex flex-wrap items-center self-stretch py-2 gap-2">
-                      {["REST APIs", "AJAX", "XML", "GitHub", "OOP", "Third Party APIs"].map((item) => (
-                        <button key={item} className="flex flex-col shrink-0 items-start bg-[#FFFFFF0D] text-left py-1 px-3 rounded-[9999px] border border-solid border-[#FFFFFF1A]">
+                      {["PHP", "Laravel", "REST APIs", "OOP", "AJAX", "XML", "JSON", "Git", "GitHub", "Third Party APIs"].map((item) => (
+                        <button key={item} className="bg-[#FFFFFF0D] text-left py-1 px-3 rounded-[9999px] border border-solid border-[#FFFFFF1A]">
                           <span className="text-[#8B8FA8] text-[10px]">{item}</span>
                         </button>
                       ))}
                     </div>
                   </div>
                 </div>
+
+                {/* ── Database ── */}
+                <div className="flex flex-1 flex-col bg-[#0D112012] p-6 lg:p-10 gap-8 rounded-3xl border border-solid border-[#FFFFFF1A]">
+                  <div className="flex justify-between items-center self-stretch">
+                    <span className="text-[#60A5FA] text-sm">Database Management</span>
+                    <div className="bg-[#2563EB1A] p-2 rounded-lg">
+                      <span className="text-[#60A5FA] text-xs font-bold">DB</span>
+                    </div>
+                  </div>
+
+                  <div className="flex flex-col self-stretch gap-6">
+                    {/* MySQL */}
+                    <div className="flex flex-col self-stretch gap-2">
+                      <div className="flex justify-between items-center self-stretch">
+                        <span className="text-[#F0EDE8] text-sm">MySQL</span>
+                        <span className="text-[#F0EDE8] text-sm">92%</span>
+                      </div>
+                      <div className="self-stretch bg-[#FFFFFF0D] rounded-[9999px]">
+                        <div className="bg-[#60A5FA] h-1.5 rounded-[9999px]" style={{ width: "92%", boxShadow: "0px 0px 10px #2563EB" }} />
+                      </div>
+                    </div>
+
+                    {/* PostgreSQL */}
+                    <div className="flex flex-col self-stretch gap-2">
+                      <div className="flex justify-between items-center self-stretch">
+                        <span className="text-[#F0EDE8] text-sm">PostgreSQL</span>
+                        <span className="text-[#F0EDE8] text-sm">85%</span>
+                      </div>
+                      <div className="self-stretch bg-[#FFFFFF0D] rounded-[9999px]">
+                        <div className="bg-[#60A5FA] h-1.5 rounded-[9999px]" style={{ width: "85%", boxShadow: "0px 0px 10px #2563EB" }} />
+                      </div>
+                    </div>
+
+                    {/* MongoDB */}
+                    <div className="flex flex-col self-stretch gap-2">
+                      <div className="flex justify-between items-center self-stretch">
+                        <span className="text-[#F0EDE8] text-sm">MongoDB</span>
+                        <span className="text-[#F0EDE8] text-sm">75%</span>
+                      </div>
+                      <div className="self-stretch bg-[#FFFFFF0D] rounded-[9999px]">
+                        <div className="bg-[#60A5FA] h-1.5 rounded-[9999px]" style={{ width: "75%", boxShadow: "0px 0px 10px #2563EB" }} />
+                      </div>
+                    </div>
+
+                    {/* Tags */}
+                    <div className="flex flex-wrap items-center self-stretch py-2 gap-2">
+                      {["MySQL", "PostgreSQL", "MongoDB", "Query Optimization", "Schema Design", "Migrations"].map((item) => (
+                        <button key={item} className="bg-[#FFFFFF0D] text-left py-1 px-3 rounded-[9999px] border border-solid border-[#FFFFFF1A]">
+                          <span className="text-[#8B8FA8] text-[10px]">{item}</span>
+                        </button>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
               </div>
             </div>
 
@@ -742,21 +856,54 @@ export default () => {
             <div className="flex flex-col items-center mb-16 lg:mb-[206px] px-4 lg:px-0 w-full reveal-up delay-3">
               <div className="flex flex-col items-center lg:items-start pb-12 lg:pb-20 w-full lg:w-auto text-center lg:text-left">
                 <span className="text-[#F0EDE8] text-2xl sm:text-3xl lg:text-6xl font-bold">
-                  Journey &amp; <span className="text-[#00F5FF]">Growth.</span>
+                  Journey & <span className="text-[#00F5FF]">Growth.</span>
                 </span>
               </div>
 
               {/* Mobile timeline — stacked */}
               <div className="flex flex-col lg:hidden w-full gap-4">
                 {[
-                  { color: "#00F5FF", borderColor: "border-[#00F5FF]", textColor: "text-[#00F5FF]", date: "AUG 2024 - PRESENT", role: "Backend Laravel Developer", company: "MentorSol", desc: "Leading backend development of scalable Laravel applications, optimizing databases, and integrating REST APIs with third-party services at MentorSol." },
-                  { color: "#7C3AED", borderColor: "border-[#7C3AED]", textColor: "text-violet-400", date: "NOV 2023 - JUN 2024", role: "Backend Laravel Developer", company: "IT Extension", desc: "Developed customized Laravel applications, maintained AJAX-based prototype libraries, and integrated payment & notification APIs at IT Extension." },
-                  { color: "#FF4D8D", borderColor: "border-[#FF4D8D]", textColor: "text-[#FF4D8D]", date: "JAN 2022 - JUN 2023", role: "Backend Laravel Developer", company: "ProByte", desc: "Built and deployed 10+ client web applications, implemented OOP design patterns, and collaborated closely with UI/UX teams at ProByte." },
+                  {
+                    color: "#00F5FF",
+                    borderColor: "border-[#00F5FF]",
+                    textColor: "text-[#00F5FF]",
+                    date: "AUG 2024 - PRESENT",
+                    role: "Senior Full Stack Laravel Developer",
+                    company: "MentorSol",
+                    desc: "Leading backend development of scalable Laravel applications, optimizing databases, and integrating REST APIs with third-party services at MentorSol."
+                  },
+                  {
+                    color: "#7C3AED",
+                    borderColor: "border-[#7C3AED]",
+                    textColor: "text-violet-400",
+                    date: "NOV 2023 - JUN 2024",
+                    role: "Associate Full Stack Laravel Developer",
+                    company: "IT Extension",
+                    desc: "Developed customized Laravel applications, maintained AJAX-based prototype libraries, and integrated payment & notification APIs at IT Extension."
+                  },
+                  {
+                    color: "#FF4D8D",
+                    borderColor: "border-[#FF4D8D]",
+                    textColor: "text-[#FF4D8D]",
+                    date: "JAN 2022 - JUN 2023",
+                    role: "Junior Full Stack Laravel Developer",
+                    company: "ProByte",
+                    desc: "Built and deployed 10+ client web applications, implemented OOP design patterns, and collaborated closely with UI/UX teams at ProByte."
+                  },
                 ].map((item, i) => (
-                  <div key={i} className={`flex flex-col bg-[#0D112012] p-6 gap-2 rounded-2xl border border-solid ${item.borderColor}`}>
-                    <span className={`${item.textColor} text-[10px]`}>{item.date}</span>
-                    <span className="text-[#F0EDE8] text-lg font-bold">{item.role}</span>
-                    <span className="text-[#8B8FA8] text-sm leading-6">{item.desc}</span>
+                  <div
+                    key={i}
+                    className={`flex flex-col bg-[#0D112012] p-6 gap-2 rounded-2xl border border-solid ${item.borderColor}`}
+                  >
+                    <span className={`${item.textColor} text-[10px]`}>
+                      {item.date}
+                    </span>
+                    <span className="text-[#F0EDE8] text-lg font-bold">
+                      {item.role}
+                    </span>
+                    <span className="text-[#8B8FA8] text-sm leading-6">
+                      {item.desc}
+                    </span>
                   </div>
                 ))}
               </div>
@@ -765,36 +912,54 @@ export default () => {
               <div className="relative hidden lg:flex flex-col items-start">
                 <div
                   className="absolute left-1/2 top-2 bottom-2 w-px -translate-x-1/2"
-                  style={{ background: "linear-gradient(to bottom, #00F5FF 0%, #7C3AED 50%, #FF4D8D 100%)", boxShadow: "0 0 12px rgba(124,58,237,0.35)" }}
+                  style={{
+                    background: "linear-gradient(to bottom, #00F5FF 0%, #7C3AED 50%, #FF4D8D 100%)",
+                    boxShadow: "0 0 12px rgba(124,58,237,0.35)"
+                  }}
                 />
-                {/* MentorSol */}
+
+                {/* Senior */}
                 <div className="flex items-center mb-24 gap-[37px]">
                   <div className="flex flex-col shrink-0 items-start bg-[#0D112012] p-8 gap-2 rounded-2xl border border-solid border-[#00F5FF]">
                     <span className="text-[#00F5FF] text-[10px]">AUG 2024 - PRESENT</span>
-                    <span className="text-[#F0EDE8] text-lg font-bold">Backend Laravel Developer</span>
-                    <span className="text-[#8B8FA8] text-sm w-[340px] leading-6">Leading backend development of scalable Laravel applications, optimizing databases, and integrating REST APIs with third-party services at MentorSol.</span>
+                    <span className="text-[#F0EDE8] text-lg font-bold">
+                      Senior Full Stack Laravel Developer
+                    </span>
+                    <span className="text-[#8B8FA8] text-sm w-[340px] leading-6">
+                      Leading backend development of scalable Laravel applications, optimizing databases, and integrating REST APIs with third-party services at MentorSol.
+                    </span>
                   </div>
-                  <div className="bg-[#00F5FF] w-4 h-4 rounded-[9999px] border-4 border-solid border-[#080B12]" style={{ boxShadow: "0px 0px 15px #00F5FF" }} />
+                  <div className="bg-[#00F5FF] w-4 h-4 rounded-full border-4 border-[#080B12]" style={{ boxShadow: "0px 0px 15px #00F5FF" }} />
                   <div className="w-[403px] h-[163px]" />
                 </div>
-                {/* IT Extension */}
+
+                {/* Associate */}
                 <div className="flex items-center mb-24 gap-9">
                   <div className="w-[403px] h-[163px]" />
-                  <div className="bg-violet-600 w-4 h-4 rounded-[9999px] border-4 border-solid border-[#080B12]" style={{ boxShadow: "0px 0px 15px #7C3AED" }} />
+                  <div className="bg-violet-600 w-4 h-4 rounded-full border-4 border-[#080B12]" style={{ boxShadow: "0px 0px 15px #7C3AED" }} />
                   <div className="flex flex-col shrink-0 items-start bg-[#0D112012] p-8 gap-2 rounded-2xl border border-solid border-[#7C3AED]">
                     <span className="text-violet-400 text-[10px]">NOV 2023 - JUN 2024</span>
-                    <span className="text-[#F0EDE8] text-[17px] font-bold">Backend Laravel Developer</span>
-                    <span className="text-[#8B8FA8] text-sm w-[330px] leading-6">Developed customized Laravel applications, maintained AJAX-based prototype libraries, and integrated payment &amp; notification APIs at IT Extension.</span>
+                    <span className="text-[#F0EDE8] text-lg font-bold">
+                      Associate Full Stack Laravel Developer
+                    </span>
+                    <span className="text-[#8B8FA8] text-sm w-[330px] leading-6">
+                      Developed customized Laravel applications, maintained AJAX-based prototype libraries, and integrated payment & notification APIs at IT Extension.
+                    </span>
                   </div>
                 </div>
-                {/* ProByte */}
+
+                {/* Junior */}
                 <div className="flex items-center gap-[37px]">
                   <div className="flex flex-col shrink-0 items-start bg-[#0D112012] p-8 gap-2 rounded-2xl border border-solid border-[#FF4D8D]">
                     <span className="text-[#FF4D8D] text-[10px]">JAN 2022 - JUN 2023</span>
-                    <span className="text-[#F0EDE8] text-lg font-bold">Backend Laravel Developer</span>
-                    <span className="text-[#8B8FA8] text-sm w-[340px] leading-6">Built and deployed 10+ client web applications, implemented OOP design patterns, and collaborated closely with UI/UX teams at ProByte.</span>
+                    <span className="text-[#F0EDE8] text-lg font-bold">
+                      Junior Full Stack Laravel Developer
+                    </span>
+                    <span className="text-[#8B8FA8] text-sm w-[340px] leading-6">
+                    Built and deployed client web applications, implemented OOP design patterns, and collaborated closely with UI/UX teams at ProByte.
+                    </span>
                   </div>
-                  <div className="bg-[#FF4D8D] w-4 h-4 rounded-[9999px] border-4 border-solid border-[#080B12]" style={{ boxShadow: "0px 0px 15px #FF4D8D" }} />
+                  <div className="bg-[#FF4D8D] w-4 h-4 rounded-full border-4 border-[#080B12]" style={{ boxShadow: "0px 0px 15px #FF4D8D" }} />
                   <div className="w-[403px] h-[163px]" />
                 </div>
               </div>
