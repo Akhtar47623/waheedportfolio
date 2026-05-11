@@ -835,7 +835,7 @@ export default () => {
               {/* Left */}
               <div className="flex flex-1 flex-col lg:mr-20 gap-8 lg:gap-12 w-full">
                 <span className="text-[#F0EDE8] text-2xl sm:text-3xl lg:text-6xl leading-tight font-bold">
-                  Let' Build <span className="text-[#00F5FF]">Something Great.</span>
+                  Let's Build <span className="text-[#00F5FF]">Something Great.</span>
                 </span>
 
                 <div className="flex flex-col self-stretch gap-6">
