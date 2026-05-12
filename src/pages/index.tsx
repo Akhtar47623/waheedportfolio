@@ -287,7 +287,9 @@ export default () => {
             {/* Logo */}
             <div className="flex shrink-0 items-center gap-2">
               <span className="text-[#00F5FF] text-lg font-bold">{"</>"}</span>
-              <span className="text-[#F0EDE8] text-lg lg:text-[21px] font-bold">DEV</span>
+              <span className="text-[#F0EDE8] text-lg lg:text-[21px] font-bold">
+                WAHEED AKHTAR
+              </span>
             </div>
 
             {/* Desktop nav */}
@@ -421,10 +423,10 @@ export default () => {
                   onClick={() => alert("Pressed!")}
                 >
                   <div className="flex items-center justify-center p-0.5 rounded-full border border-solid border-[#7C3AED1A]">
-                    <img
-                      src={profileImage}
-                      className="w-[200px] h-[200px] sm:w-[260px] sm:h-[260px] lg:w-[340px] lg:h-[340px] rounded-full object-cover border-4 border-[#00F5FF33] p-[2px]"
-                    />
+                  <img
+                    src={profileImage}
+                    className="w-[200px] h-[200px] sm:w-[260px] sm:h-[260px] lg:w-[340px] lg:h-[340px] rounded-full object-cover border-4 border-[#00F5FF33] p-[2px] shadow-[0_0_50px_#32c3c9]"
+                  />
                   </div>
                 </button>
 
@@ -490,7 +492,7 @@ export default () => {
                 </div>
                 <div className="flex flex-col items-start self-stretch pb-8 lg:pb-12">
                   <span className="text-[#8B8FA8] text-base lg:text-lg lg:w-[592px]">
-                    I am a Full-Stack Developer focused on building scalable, maintainable, and high-performance web applications. I bridge the gap between complex backend logic and intuitive user interfaces, ensuring every byte serves a purpose.
+                  I am a Full-Stack Developer focused on building scalable, maintainable, and high-performance web applications. I specialize in developing robust backend systems, RESTful APIs, and responsive frontend experiences that deliver both functionality and seamless user interaction. By combining clean architecture, efficient database design, and modern UI development, I bridge the gap between complex backend logic and intuitive user interfaces — ensuring every feature, workflow, and byte serves a purpose.
                   </span>
                 </div>
                 <div className="flex flex-col self-stretch pb-[3px] gap-[27px]">
@@ -1096,7 +1098,9 @@ export default () => {
               <div className="flex flex-col lg:flex-row items-center gap-6 lg:gap-8 text-center lg:text-left">
                 <div className="flex flex-col items-center lg:items-start gap-1">
                   <span className="text-[#F0EDE8] text-xl font-bold">WAHEED AKHTAR</span>
-                  <span className="text-[#8B8FA8] text-[10px]">Laravel Backend Developer &amp; React Developer</span>
+                  <span className="text-[#8B8FA8] text-[10px]">
+                    Full-Stack Web Developer
+                  </span>
                 </div>
                 <div className="flex items-center justify-center gap-6">
                   <a href="#projects" className="text-[#8B8FA8] text-xs hover:text-white transition">Projects</a>
