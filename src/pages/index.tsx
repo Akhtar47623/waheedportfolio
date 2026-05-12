@@ -16,6 +16,7 @@ import Charity from "../assets/charity.png";
 import HealthCare from "../assets/health_care.png";
 import Betki from "../assets/marketing.png";
 import Cloves from "../assets/cloves.mp4";
+import SetUp from "../assets/setup.png";
 
 export default () => {
   const [input2, onChangeInput2] = useState("");
@@ -463,25 +464,37 @@ export default () => {
             {/* ── ENGINEERING & EXPERTISE ── */}
             <div className="flex flex-col lg:flex-row items-start self-stretch mb-12 lg:mb-[200px] px-4 lg:mx-16 lg:px-0 reveal-up delay-1 gap-8 lg:gap-0">
               {/* Left image card */}
-              <div className="flex flex-1 flex-col items-start lg:mr-20 w-full">
-                <button
-                  className="flex flex-col items-start bg-[#0D112012] text-left p-3 rounded-2xl border-2 border-solid border-[#00F5FF4D] w-full lg:w-auto"
-                  onClick={() => alert("Pressed!")}
-                >
-                  <div
-                    className="flex flex-col items-start bg-cover bg-center w-full lg:w-[576px] pt-[280px] lg:pt-[448px] pl-[21px] pr-4 lg:pr-[408px] rounded-2xl border border-solid border-[#FFFFFF1A]"
-                    style={{
-                      backgroundImage:
-                        "url(https://storage.googleapis.com/tagjs-prod.appspot.com/v1/6fQTmiJWHc/yt883f85_expires_30_days.png)",
-                    }}
-                  >
-                    <div className="flex flex-col items-start bg-[#0D112012] p-6 mb-5 gap-1 rounded-2xl border border-solid border-[#00F5FF80]">
-                      <span className="text-[#00F5FF] text-[27px] font-bold">3+</span>
-                      <span className="text-[#8B8FA8] text-[10px]">Years of Craft</span>
-                    </div>
-                  </div>
-                </button>
-              </div>
+              <div className="flex flex-col lg:flex-row items-start self-stretch mb-12 lg:mb-[200px] px-4 lg:mx-16 lg:px-0 reveal-up delay-1 gap-8 lg:gap-0">
+
+  {/* Left image card */}
+  <div className="flex flex-1 flex-col items-start lg:mr-20 w-full">
+
+    <button
+      className="flex flex-col items-start bg-[#0D112012] text-left p-3 rounded-2xl border-2 border-solid border-[#00F5FF4D] w-full lg:w-auto"
+      onClick={() => alert("Pressed!")}
+    >
+
+      {/* IMAGE */}
+      <div className="relative w-full lg:w-[576px] rounded-2xl overflow-hidden">
+  
+        <div
+          className="bg-cover bg-center pt-[280px] lg:pt-[448px]"
+          style={{ backgroundImage: `url(${SetUp})` }}
+        />
+
+        <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle,transparent_40%,#080B12_100%)]" />
+      </div>             
+
+      {/* YEARS OF CRAFT (OUTSIDE IMAGE) */}
+      <div className="flex flex-col items-start bg-[#0D112012] p-6 mt-4 gap-1 rounded-2xl border border-solid border-[#00F5FF80]">
+        <span className="text-[#00F5FF] text-[27px] font-bold">3+</span>
+        <span className="text-[#8B8FA8] text-[10px]">Years of Craft</span>
+      </div>
+
+    </button>
+  </div>
+
+</div>
 
               {/* Right text */}
               <div className="flex-1 py-0.5 mt-0 lg:mt-4">

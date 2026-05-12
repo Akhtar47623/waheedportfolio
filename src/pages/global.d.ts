@@ -7,3 +7,4 @@ declare module "*.gif";
 declare module "*.webp";
 declare module "*.pdf";
 declare module "*.mp4";
+declare module "*.avif";
