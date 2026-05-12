@@ -705,13 +705,14 @@ export default () => {
               <div className="flex flex-col sm:flex-row justify-between items-start self-stretch flex-wrap gap-6">
                 <div className="flex flex-col shrink-0 items-start gap-4">
                 <div className="flex flex-col items-center lg:items-start text-center lg:text-left">
-                  <span className="text-[#F0EDE8] text-2xl sm:text-3xl lg:text-6xl font-bold leading-tight">
-                    Explore <span className="text-[#00F5FF]">My Work.</span>
-                  </span>
-
-                  <span className="text-[#8B8FA8] text-[10px] sm:text-xs lg:text-sm tracking-[1px] sm:tracking-[2px] mt-2">
-                    CRAFTING DIGITAL EXPERIENCES THROUGH PRECISION CODE.
-                  </span>
+                    <div className="flex flex-col gap-2 sm:gap-3">  
+                      <span className="text-[#F0EDE8] text-2xl sm:text-3xl lg:text-6xl font-bold leading-tight">
+                        Explore <span className="text-[#00F5FF]">My Work.</span>
+                      </span>
+                      <span className="text-[#8B8FA8] text-[10px] sm:text-xs tracking-[2px] text-center sm:text-left block">
+                        CRAFTING DIGITAL EXPERIENCES THROUGH PRECISION CODE.
+                      </span>
+                </div>
                 </div>
                 </div>
               </div>
