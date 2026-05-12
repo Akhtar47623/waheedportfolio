@@ -539,11 +539,11 @@ export default () => {
       
       <div className="flex flex-col gap-2 sm:gap-3">
         
-        <span className="text-[#F0EDE8] text-2xl sm:text-3xl lg:text-6xl font-bold leading-tight">
+        <span className="text-[#F0EDE8] text-2xl sm:text-3xl lg:text-6xl font-bold leading-tight md:pl-11">
           Explore <span className="text-[#00F5FF]">My Work.</span>
         </span>
 
-        <span className="text-[#8B8FA8] text-[10px] sm:text-xs tracking-[2px] uppercase">
+        <span className="text-[#8B8FA8] text-[10px] sm:text-xs tracking-[2px] uppercase md:pl-12">
           Crafting digital experiences through precision code.
         </span>
 
@@ -624,7 +624,7 @@ export default () => {
     </Swiper>
 
     {/* View All Button */}
-    <div className="flex justify-end mt-2 lg:mt-6">
+    <div className="flex justify-center md:justify-end mt-2 lg:mt-6">
 
       <Link
         to="/projects"

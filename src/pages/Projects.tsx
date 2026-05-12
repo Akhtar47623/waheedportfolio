@@ -241,34 +241,6 @@ export default function ProjectsPage() {
               </>
             )}
           </p>
-
-          <div className="flex flex-wrap gap-2">
-            <button
-              type="button"
-              onClick={() => setFilter("All")}
-              className={`rounded-full border px-4 py-2 text-xs uppercase tracking-wider transition ${
-                filter === "All"
-                  ? "border-[#00F5FF] bg-[#00F5FF14] text-[#00F5FF]"
-                  : "border-[#FFFFFF1A] text-[#8B8FA8] hover:border-[#00F5FF66]"
-              }`}
-            >
-              All
-            </button>
-            {categories.map((cat) => (
-              <button
-                key={cat}
-                type="button"
-                onClick={() => setFilter(cat)}
-                className={`rounded-full border px-4 py-2 text-xs uppercase tracking-wider transition ${
-                  filter === cat
-                    ? "border-[#00F5FF] bg-[#00F5FF14] text-[#00F5FF]"
-                    : "border-[#FFFFFF1A] text-[#8B8FA8] hover:border-[#00F5FF66]"
-                }`}
-              >
-                {cat}
-              </button>
-            ))}
-          </div>
         </header>
 
         <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 lg:gap-8 py-10 lg:py-14">
