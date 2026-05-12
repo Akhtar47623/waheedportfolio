@@ -5,18 +5,15 @@ import "../index.css";
 import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
-import  { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
+import { Link } from "react-router-dom";
 import emailjs from "@emailjs/browser";
 import profileImage from "../assets/waheed.png";
 import cvFile from "../assets/Waheed_Akhtar_CV.pdf";
 import { FaEnvelope, FaLinkedin, FaMapMarkerAlt } from "react-icons/fa";
-import Docurious from "../assets/docurious.png";
-import ChefPortal from "../assets/chef-portal.png";
-import Charity from "../assets/charity.png";
-import HealthCare from "../assets/health_care.png";
-import Betki from "../assets/marketing.png";
-import Cloves from "../assets/cloves.mp4";
 import SetUp from "../assets/setup.png";
+import { PROJECTS } from "../data/projects";
+import { ProjectCard } from "../components/ProjectCard";
 
 export default () => {
   const [input2, onChangeInput2] = useState("");
@@ -56,63 +53,6 @@ export default () => {
     { id: "profile", label: "Profile" },
     { id: "skills", label: "Skills" },
     { id: "contact", label: "Contact" },
-  ];
-
-  const projects = [
-    {
-      title: "Event & Challenge Platform",
-      category: "Full Stack",
-      url: "https://portal.docurious.com",
-      description: "A platform that connects users and service providers, where vendors organize challenges (events) for users to participate in.It automates key processes such as participation tracking and payouts, ensuring a seamless experience for all parties.",
-      tags: ["Laravel", "MySQL", "React", "REST APIs"],
-      image: Docurious,
-      type:"image"
-    },
-    {
-      title: "Chef Portal & Order Management Platform",
-      category: "Full Stack",
-      url: "https://prepbychef.com",
-      description: "A platform connecting chefs and users, managing orders, deliveries, and commissions seamlessly. The system automates key processes to make the experience smooth and efficient for everyone..",
-      tags: ["Laravel", "MySQL"],
-      image: ChefPortal,
-      type:"image"
-    },
-    {
-      title: "Secure Online Charity & Donation Platform",
-      category: "Full Stack",
-      url: "https://demo-customlinks.com/nationempower_dev",
-      description: "This charity website is a full-stack web application that enables users to donate online using PayPal and Stripe payment gateways. It includes secure payment processing, responsive UI, donation management, and a scalable backend architecture.",
-      tags: ["Laravel","MySQL"],
-      image: Charity,
-      type:"image"
-    },
-    {
-      title: "Biteki Marketing – Creative Agency Platform",
-      category: "Full Stack",
-      url: "https://demo-customlinks.com/biteki_dev",
-      description: "Creative social media marketing and food photography website for UK restaurants, offering content shoots, short-form videos, and flexible, no-contract marketing plans.",
-      tags: ["Laravel","MySQL"],
-      image: Betki,
-      type:"image"
-    },
-    {
-      title: "Healthcare Staffing NW",
-      category: "Full Stack",
-      url: "https://demo-customlinks.com/health_care_dev",
-      description: "A modern healthcare staffing agency website designed to support medical professionals by simplifying job placement, promoting work–life balance, and building long-term partnerships through flexible and supportive staffing solutions.",
-      tags: ["Laravel", "MySQL"],
-      image:HealthCare,
-      type:"image"
-    },
-    {
-      title: "ClovesRX Global — Prescription Delivery",
-      category: "Full Stack",
-      url: "#",
-      description: "A prescription delivery platform built to support secure and on-time medication delivery for pharmacies across Southern California, helping streamline prescription fulfillment and improve patient access to essential medications.",
-      tags: [ "Laravel", "MySQL"],
-      image:Cloves,
-      type:"video"
-    },
   ];
 
   const onSubmitContact = async (e: React.FormEvent) => {
@@ -588,137 +528,133 @@ export default () => {
               </div>
 
             {/* ── WORK / PROJECTS ── */}
-            <div className="flex flex-col self-stretch  py-12 lg:py-[100px]  lg:mb-[100px] gap-10 lg:gap-16 reveal-up delay-3" id="work">
-              <div className="flex flex-col sm:flex-row justify-between items-start self-stretch flex-wrap gap-6">
-                <div className="flex flex-col shrink-0 items-start gap-4">
-                <div className="flex flex-col items-center lg:items-start text-center lg:text-left">
-                    <div className="flex flex-col gap-2 sm:gap-3">  
-                      <span className="text-[#F0EDE8] text-2xl sm:text-3xl lg:text-6xl font-bold leading-tight pl-11">
-                        Explore <span className="text-[#00F5FF]">My Work.</span>
-                      </span>
-                      <span className="text-[#8B8FA8] text-[10px] sm:text-xs tracking-[2px] text-center sm:text-left block md:pl-12 md:mt-4">
-                        CRAFTING DIGITAL EXPERIENCES THROUGH PRECISION CODE.
-                      </span>
-                </div>
-                </div>
-                </div>
-              </div>
+            <div
+  className="flex flex-col self-stretch py-12 lg:py-[100px] lg:mb-[100px] gap-10 lg:gap-16 reveal-up delay-3"
+  id="work"
+>
+  {/* Header */}
+  <div className="flex flex-col sm:flex-row justify-between items-start self-stretch flex-wrap gap-6 px-4 lg:px-0">
+    
+    <div className="flex flex-col items-center lg:items-start text-center lg:text-left max-w-[700px]">
+      
+      <div className="flex flex-col gap-2 sm:gap-3">
+        
+        <span className="text-[#F0EDE8] text-2xl sm:text-3xl lg:text-6xl font-bold leading-tight">
+          Explore <span className="text-[#00F5FF]">My Work.</span>
+        </span>
 
-             {/* Slider wrapper — extra horizontal padding makes room for outside arrows */}
-                  <div className="relative px-8 lg:px-12">
+        <span className="text-[#8B8FA8] text-[10px] sm:text-xs tracking-[2px] uppercase">
+          Crafting digital experiences through precision code.
+        </span>
 
-                  {/* Custom Prev Arrow */}
-                  <button
-                    className="swiper-btn-prev absolute left-0 top-1/2 -translate-y-1/2 z-10
-                      w-8 h-8 rounded-full border border-[#FFFFFF22] bg-[#0D1120]
-                      flex items-center justify-center
-                      text-[#8B8FA8] hover:text-[#00F5FF] hover:border-[#00F5FF]
-                      transition-all duration-300 text-sm"
-                  >
-                    ‹
-                  </button>
+      </div>
+    </div>
+  </div>
 
-                  {/* Custom Next Arrow */}
-                  <button
-                    className="swiper-btn-next absolute right-0 top-1/2 -translate-y-1/2 z-10
-                      w-8 h-8 rounded-full border border-[#FFFFFF22] bg-[#0D1120]
-                      flex items-center justify-center
-                      text-[#8B8FA8] hover:text-[#00F5FF] hover:border-[#00F5FF]
-                      transition-all duration-300 text-sm"
-                  >
-                    ›
-                  </button>
+  {/* Slider Wrapper */}
+  <div className="relative px-6 lg:px-14">
 
-                  <Swiper
-                    modules={[Navigation, Pagination, Autoplay]}
-                    spaceBetween={20}
-                    slidesPerView={1}
-                    autoplay={false}
-                    pagination={{ clickable: true }}
-                    navigation={{
-                      prevEl: ".swiper-btn-prev",
-                      nextEl: ".swiper-btn-next",
-                    }}
-                    breakpoints={{
-                      640: { slidesPerView: 2 },
-                      1024: { slidesPerView: 3 },
-                    }}
-                    className="w-full pb-10"
-                  >
-                    {projects.map((project, index) => (
-                      <SwiperSlide key={index}>
-                        <div className="flex flex-col rounded-3xl border border-[#FFFFFF1A] bg-[#0D1120] overflow-hidden">
+    {/* Prev Button */}
+    <button
+      className="
+        swiper-btn-prev
+        absolute left-0 top-1/2 -translate-y-1/2 z-20
+        w-11 h-11
+        rounded-full
+        border border-[#FFFFFF22]
+        bg-[#0D1120CC]
+        backdrop-blur-xl
+        flex items-center justify-center
+        text-[#8B8FA8]
+        hover:text-[#00F5FF]
+        hover:border-[#00F5FF]
+        transition-all duration-300
+      "
+    >
+      ‹
+    </button>
 
-                          {/* Browser mockup frame */}
-                          <div className="bg-[#1A1D2E] px-3 pt-3 pb-0">
-                            <div className="bg-[#0D1120] rounded-t-xl px-3 py-2 flex items-center gap-2">
-                              <div className="flex items-center gap-1.5">
-                                <div className="w-2.5 h-2.5 rounded-full bg-[#FF5F57]" />
-                                <div className="w-2.5 h-2.5 rounded-full bg-[#FEBC2E]" />
-                                <div className="w-2.5 h-2.5 rounded-full bg-[#28C840]" />
-                              </div>
-                              <div className="flex-1 bg-[#1A1D2E] rounded-full px-3 py-1 mx-2">
-                                <span className="text-[#8B8FA8] text-[10px]">
-                                  {project.url || "www.project-demo.com"}
-                                </span>
-                              </div>
-                            </div>
-                            <div className="overflow-hidden rounded-none">
-                              {project.type === "video" ? (
-                               <video
-                               src={project.image}
-                               className="w-full h-[200px] sm:h-[220px] lg:h-[240px] object-cover transition-transform duration-500 group-hover:scale-105 rounded-lg"
-                               controls
-                               playsInline
-                             />
-                              ) : (
-                                <img
-                                  src={project.image}
-                                  alt={project.title}
-                                  className="w-full h-[200px] sm:h-[220px] lg:h-[240px] object-cover transition-transform duration-500 group-hover:scale-105 rounded-lg"
-                                />
-                              )}
-                            </div>
-                          </div>
+    {/* Next Button */}
+    <button
+      className="
+        swiper-btn-next
+        absolute right-0 top-1/2 -translate-y-1/2 z-20
+        w-11 h-11
+        rounded-full
+        border border-[#FFFFFF22]
+        bg-[#0D1120CC]
+        backdrop-blur-xl
+        flex items-center justify-center
+        text-[#8B8FA8]
+        hover:text-[#00F5FF]
+        hover:border-[#00F5FF]
+        transition-all duration-300
+      "
+    >
+      ›
+    </button>
 
-                          {/* Card body */}
-                          <div className="flex flex-col p-5 lg:p-6 gap-4">
-                            <span className="text-[#00F5FF] text-[10px] uppercase tracking-[2px]">
-                              {project.category}
-                            </span>
-                            <h3 className="text-[#F0EDE8] text-lg lg:text-xl font-bold leading-tight h-14">
-                              {project.title}
-                            </h3>
-                            <p className="text-[#8B8FA8] text-sm leading-6 h-[120px]">
-                              {project.description}
-                            </p>
-                            <div className="flex flex-wrap gap-2">
-                              {project.tags?.map((tag: string) => (
-                                <span
-                                  key={tag}
-                                  className="text-[#8B8FA8] text-[10px] bg-[#FFFFFF0D] border border-[#FFFFFF1A] px-3 py-1 rounded-full"
-                                >
-                                  {tag}
-                                </span>
-                              ))}
-                            </div>
-                            <a
-                              href={project.url}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="w-fit mt-1 text-xs lg:text-sm text-[#F0EDE8] border border-[#FFFFFF22] px-5 py-2 rounded-full hover:bg-[#00F5FF] hover:text-[#080B12] transition-all duration-300 inline-block"
-                            >
-                              View Project →
-                            </a>
-                          </div>
+    {/* Swiper */}
+    <Swiper
+      modules={[Navigation, Pagination, Autoplay]}
+      spaceBetween={24}
+      slidesPerView={1}
+      autoplay={{
+        delay: 4000,
+        disableOnInteraction: false,
+      }}
+      pagination={{
+        clickable: true,
+      }}
+      navigation={{
+        prevEl: ".swiper-btn-prev",
+        nextEl: ".swiper-btn-next",
+      }}
+      breakpoints={{
+        640: { slidesPerView: 2 },
+        1024: { slidesPerView: 3 },
+      }}
+      className="w-full pb-14"
+    >
+      {PROJECTS.map((project, index) => (
+        <SwiperSlide key={index}>
+          <ProjectCard project={project} />
+        </SwiperSlide>
+      ))}
+    </Swiper>
 
-                        </div>
-                      </SwiperSlide>
-                    ))}
-                  </Swiper>
+    {/* View All Button */}
+    <div className="flex justify-end mt-2 lg:mt-6">
 
-                  </div>
-                </div>
+      <Link
+        to="/projects"
+        className="
+          group
+          inline-flex
+          items-center
+          gap-2
+          px-6 lg:px-8
+          py-3
+          rounded-full
+          border border-[#FFFFFF22]
+          bg-[#0D1120]
+          text-[#F0EDE8]
+          text-sm lg:text-base
+          hover:bg-[#00F5FF]
+          hover:text-[#080B12]
+          hover:border-[#00F5FF]
+          transition-all duration-300
+        "
+      >
+        View All Projects
+
+        <span className="transition-transform duration-300 group-hover:translate-x-1">
+          →
+        </span>
+      </Link>
+    </div>
+  </div>
+</div>
 
             {/* ── TIMELINE ── */}
             <div className="flex flex-col items-center mb-16 lg:mb-[206px] px-4 lg:px-0 w-full reveal-up delay-3">
