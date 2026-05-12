@@ -525,204 +525,78 @@ export default () => {
 
             {/* ── TECH BADGES ── */}
             <div className="grid grid-cols-1 lg:grid-cols-3 self-stretch mb-12 lg:mb-[200px] px-4 lg:mx-20 lg:px-0 gap-4 lg:gap-8 reveal-up delay-2">
-              {/* Laravel */}
-              <div className="flex items-center bg-[#0D112012] py-8 lg:py-[41px] rounded-2xl border border-solid border-[#FFFFFF1A]">
-                <div className="bg-[#FF2D201A] w-14 h-14 lg:w-16 lg:h-16 ml-6 lg:ml-10 mr-6 lg:mr-8 rounded-xl border border-solid border-[#FF2D2033] flex items-center justify-center shrink-0">
-                  <span className="text-[#FF2D20] text-2xl font-bold">L</span>
-                </div>
-                <div className="flex flex-col items-start gap-1">
-                  <span className="text-[#F0EDE8] lg:text-[21px] font-bold">Laravel Expert</span>
-                  <span className="text-[#8B8FA8] text-sm">PHP / REST APIs / OOP</span>
-                </div>
-              </div>
-
-              {/* Node.js */}
-              <div className="flex items-center bg-[#0D112012] py-8 lg:py-[41px] rounded-2xl border border-solid border-[#FFFFFF1A]">
-                <div className="bg-[#7C3AED1A] w-14 h-14 lg:w-16 lg:h-16 ml-6 lg:ml-10 mr-6 lg:mr-8 rounded-xl border border-solid border-[#7C3AED33] flex items-center justify-center shrink-0">
-                  <span className="text-violet-400 text-xl lg:text-2xl font-bold">N</span>
-                </div>
-                <div className="flex flex-col items-start gap-1">
-                  <span className="text-[#F0EDE8] lg:text-[21px] font-bold">Node.js Backend</span>
-                  <span className="text-[#8B8FA8] text-sm">Node / Express / APIs</span>
-                </div>
-              </div>
-
-              {/* Database */}
-              <div className="flex items-center bg-[#0D112012] py-8 lg:py-[41px] rounded-2xl border border-solid border-[#FFFFFF1A]">
-                <div className="bg-[#2563EB1A] w-14 h-14 lg:w-16 lg:h-16 ml-6 lg:ml-10 mr-6 lg:mr-8 rounded-xl border border-solid border-[#2563EB33] flex items-center justify-center shrink-0">
-                  <span className="text-[#60A5FA] text-xl lg:text-2xl font-bold">DB</span>
-                </div>
-                <div className="flex flex-col items-start gap-1">
-                  <span className="text-[#F0EDE8] lg:text-[21px] font-bold">Database Optimization</span>
-                  <span className="text-[#8B8FA8] text-sm">MySQL / PostgreSQL</span>
-                </div>
-              </div>
 
               {/* Frontend */}
-              <div className="flex items-center bg-[#0D112012] py-8 lg:py-[41px] rounded-2xl border border-solid border-[#FFFFFF1A] lg:col-span-1">
+              <div className="flex items-center bg-[#0D112012] py-8 lg:py-[41px] rounded-2xl border border-solid border-[#FFFFFF1A]">
+                
                 <div className="bg-[#14B8A61A] w-14 h-14 lg:w-16 lg:h-16 ml-6 lg:ml-10 mr-6 lg:mr-8 rounded-xl border border-solid border-[#14B8A633] flex items-center justify-center shrink-0">
-                  <span className="text-[#2DD4BF] text-xl lg:text-2xl font-bold">⚛</span>
+                  <span className="text-[#2DD4BF] text-xl lg:text-2xl font-bold">
+                    ⚛
+                  </span>
                 </div>
+
                 <div className="flex flex-col items-start gap-1">
-                  <span className="text-[#F0EDE8] lg:text-[21px] font-bold">Frontend Development</span>
-                  <span className="text-[#8B8FA8] text-sm">React / Vue / Tailwind</span>
+                  <span className="text-[#F0EDE8] lg:text-[21px] font-bold">
+                    Frontend Development
+                  </span>
+
+                  <span className="text-[#8B8FA8] text-sm">
+                    React / Vue / Tailwind
+                  </span>
                 </div>
               </div>
-            </div>
 
-            {/* ── SKILLS ── */}
-            <div className="flex flex-col self-stretch mb-12 lg:mb-[100px] px-4 lg:mx-20 lg:px-0 gap-10 lg:gap-16 reveal-up delay-2" id="skills">
-  
-              <div className="flex flex-col items-center self-stretch">
-                <span className="text-[#F0EDE8] text-2xl sm:text-3xl lg:text-6xl font-bold">
-                  Technical <span className="text-[#00F5FF]">Stack.</span>
-                </span>
-              </div>
+              {/* Backend */}
+              <div className="flex items-center bg-[#0D112012] py-8 lg:py-[41px] rounded-2xl border border-solid border-[#FFFFFF1A]">
 
-              <div className="flex flex-col lg:flex-row items-stretch self-stretch gap-6 lg:gap-8"> 
-              {/* ── Frontend ── */}
-                <div className="flex flex-1 flex-col bg-[#0D112012] p-6 lg:p-10 gap-8 rounded-3xl border border-solid border-[#FFFFFF1A]">
-                  <div className="flex justify-between items-center self-stretch">
-                    <span className="text-[#00F5FF] text-sm">Frontend Development</span>
-                    <div className="bg-[#00F5FF1A] p-2 rounded-lg">
-                      <span className="text-[#00F5FF] text-xs font-bold">UI</span>
-                    </div>
-                  </div>
-
-                  <div className="flex flex-col self-stretch gap-6">
-                    {/* React */}
-                    <div className="flex flex-col self-stretch gap-2">
-                      <div className="flex justify-between items-center self-stretch">
-                        <span className="text-[#F0EDE8] text-sm">React.js</span>
-                        <span className="text-[#F0EDE8] text-sm">85%</span>
-                      </div>
-                      <div className="self-stretch bg-[#FFFFFF0D] rounded-[9999px]">
-                        <div className="bg-[#00F5FF] h-1.5 rounded-[9999px]" style={{ width: "85%", boxShadow: "0px 0px 10px #00F5FF" }} />
-                      </div>
-                    </div>
-
-                    {/* Vue */}
-                    <div className="flex flex-col self-stretch gap-2">
-                      <div className="flex justify-between items-center self-stretch">
-                        <span className="text-[#F0EDE8] text-sm">Vue.js</span>
-                        <span className="text-[#F0EDE8] text-sm">80%</span>
-                      </div>
-                      <div className="self-stretch bg-[#FFFFFF0D] rounded-[9999px]">
-                        <div className="bg-[#00F5FF] h-1.5 rounded-[9999px]" style={{ width: "80%", boxShadow: "0px 0px 10px #00F5FF" }} />
-                      </div>
-                    </div>
-
-                    {/* JavaScript */}
-                    <div className="flex flex-col self-stretch gap-2">
-                      <div className="flex justify-between items-center self-stretch">
-                        <span className="text-[#F0EDE8] text-sm">JavaScript / jQuery</span>
-                        <span className="text-[#F0EDE8] text-sm">88%</span>
-                      </div>
-                      <div className="self-stretch bg-[#FFFFFF0D] rounded-[9999px]">
-                        <div className="bg-[#00F5FF] h-1.5 rounded-[9999px]" style={{ width: "88%", boxShadow: "0px 0px 10px #00F5FF" }} />
-                      </div>
-                    </div>
-
-                    {/* CSS Frameworks */}
-                    <div className="flex flex-col self-stretch gap-2">
-                      <div className="flex justify-between items-center self-stretch">
-                        <span className="text-[#F0EDE8] text-sm">Tailwind / Bootstrap / Chakra UI</span>
-                        <span className="text-[#F0EDE8] text-sm">92%</span>
-                      </div>
-                      <div className="self-stretch bg-[#FFFFFF0D] rounded-[9999px]">
-                        <div className="bg-[#00F5FF] h-1.5 rounded-[9999px]" style={{ width: "92%", boxShadow: "0px 0px 10px #00F5FF" }} />
-                      </div>
-                    </div>
-
-                    {/* Tags */}
-                    <div className="flex flex-wrap items-center self-stretch py-2 gap-2">
-                      {["HTML5", "CSS3", "JavaScript", "jQuery", "Ajax", "React", "Vue.js", "Bootstrap", "Tailwind CSS", "Chakra UI"].map((item) => (
-                        <button key={item} className="bg-[#FFFFFF0D] text-left py-1 px-3 rounded-[9999px] border border-solid border-[#FFFFFF1A]">
-                          <span className="text-[#8B8FA8] text-[10px]">{item}</span>
-                        </button>
-                      ))}
-                    </div>
-                  </div>
+                <div className="bg-[#7C3AED1A] w-14 h-14 lg:w-16 lg:h-16 ml-6 lg:ml-10 mr-6 lg:mr-8 rounded-xl border border-solid border-[#7C3AED33] flex items-center justify-center shrink-0">
+                  <span className="text-violet-400 text-xl lg:text-2xl font-bold">
+                    BE
+                  </span>
                 </div>
 
-                {/* ── Backend ── */}
-                <div className="flex flex-1 flex-col bg-[#0D112012] p-6 lg:p-10 gap-8 rounded-3xl border border-solid border-[#FFFFFF1A]">
-                  <div className="flex justify-between items-center self-stretch">
-                    <span className="text-violet-400 text-sm">Backend Engineering</span>
-                    <div className="bg-[#7C3AED1A] p-2 rounded-lg">
-                      <span className="text-violet-400 text-xs font-bold">API</span>
-                    </div>
-                  </div>
+                <div className="flex flex-col items-start gap-1">
+                  <span className="text-[#F0EDE8] lg:text-[21px] font-bold">
+                    Backend Development
+                  </span>
 
-                  <div className="flex flex-col self-stretch gap-6">
-                    {/* PHP / Laravel */}
-                    <div className="flex flex-col self-stretch gap-2">
-                      <div className="flex justify-between items-center self-stretch">
-                        <span className="text-[#F0EDE8] text-sm">PHP / Laravel</span>
-                        <span className="text-[#F0EDE8] text-sm">95%</span>
-                      </div>
-                      <div className="self-stretch bg-[#FFFFFF0D] rounded-[9999px]">
-                        <div className="bg-violet-500 h-1.5 rounded-[9999px]" style={{ width: "95%", boxShadow: "0px 0px 10px #7C3AED" }} />
-                      </div>
-                    </div>
+                  <span className="text-[#8B8FA8] text-sm">
+                    Laravel / Node.js / APIs
+                  </span>
+                </div>
+              </div>
 
-                    {/* Node.js */}
-                    <div className="flex flex-col self-stretch gap-2">
-                      <div className="flex justify-between items-center self-stretch">
-                        <span className="text-[#F0EDE8] text-sm">Node.js / Express</span>
-                        <span className="text-[#F0EDE8] text-sm">78%</span>
-                      </div>
-                      <div className="self-stretch bg-[#FFFFFF0D] rounded-[9999px]">
-                        <div className="bg-violet-500 h-1.5 rounded-[9999px]" style={{ width: "78%", boxShadow: "0px 0px 10px #7C3AED" }} />
-                      </div>
-                    </div>
+              {/* Databases */}
+              <div className="flex items-center bg-[#0D112012] py-8 lg:py-[41px] rounded-2xl border border-solid border-[#FFFFFF1A]">
 
-                    {/* REST APIs */}
-                    <div className="flex flex-col self-stretch gap-2">
-                      <div className="flex justify-between items-center self-stretch">
-                        <span className="text-[#F0EDE8] text-sm">REST APIs / OOP</span>
-                        <span className="text-[#F0EDE8] text-sm">93%</span>
-                      </div>
-                      <div className="self-stretch bg-[#FFFFFF0D] rounded-[9999px]">
-                        <div className="bg-violet-500 h-1.5 rounded-[9999px]" style={{ width: "93%", boxShadow: "0px 0px 10px #7C3AED" }} />
-                      </div>
-                    </div>
-
-                    {/* Third-party APIs */}
-                    <div className="flex flex-col self-stretch gap-2">
-                      <div className="flex justify-between items-center self-stretch">
-                        <span className="text-[#F0EDE8] text-sm">Third-Party API Integration</span>
-                        <span className="text-[#F0EDE8] text-sm">90%</span>
-                      </div>
-                      <div className="self-stretch bg-[#FFFFFF0D] rounded-[9999px]">
-                        <div className="bg-violet-500 h-1.5 rounded-[9999px]" style={{ width: "90%", boxShadow: "0px 0px 10px #7C3AED" }} />
-                      </div>
-                    </div>
-
-                    {/* Tags */}
-                    <div className="flex flex-wrap items-center self-stretch py-2 gap-2">
-                      {["PHP", "Laravel", "Node.js", "Express.js", "REST APIs", "OOP", "AJAX", "XML", "JSON", "Git", "GitHub", "Third Party APIs"].map((item) => (
-                        <button key={item} className="bg-[#FFFFFF0D] text-left py-1 px-3 rounded-[9999px] border border-solid border-[#FFFFFF1A]">
-                          <span className="text-[#8B8FA8] text-[10px]">{item}</span>
-                        </button>
-                      ))}
-                    </div>
-                  </div>
+                <div className="bg-[#2563EB1A] w-14 h-14 lg:w-16 lg:h-16 ml-6 lg:ml-10 mr-6 lg:mr-8 rounded-xl border border-solid border-[#2563EB33] flex items-center justify-center shrink-0">
+                  <span className="text-[#60A5FA] text-xl lg:text-2xl font-bold">
+                    DB
+                  </span>
                 </div>
 
+                <div className="flex flex-col items-start gap-1">
+                  <span className="text-[#F0EDE8] lg:text-[21px] font-bold">
+                    Databases
+                  </span>
+
+                  <span className="text-[#8B8FA8] text-sm">
+                    MySQL / PostgreSQL / MongoDB
+                  </span>
+                </div>
               </div>
-            </div>
+              </div>
 
             {/* ── WORK / PROJECTS ── */}
-            <div className="flex flex-col self-stretch bg-[#00000033] py-12 lg:py-[100px]  lg:mb-[100px] gap-10 lg:gap-16 reveal-up delay-3" id="work">
+            <div className="flex flex-col self-stretch  py-12 lg:py-[100px]  lg:mb-[100px] gap-10 lg:gap-16 reveal-up delay-3" id="work">
               <div className="flex flex-col sm:flex-row justify-between items-start self-stretch flex-wrap gap-6">
                 <div className="flex flex-col shrink-0 items-start gap-4">
                 <div className="flex flex-col items-center lg:items-start text-center lg:text-left">
                     <div className="flex flex-col gap-2 sm:gap-3">  
-                      <span className="text-[#F0EDE8] text-2xl sm:text-3xl lg:text-6xl font-bold leading-tight">
+                      <span className="text-[#F0EDE8] text-2xl sm:text-3xl lg:text-6xl font-bold leading-tight pl-11">
                         Explore <span className="text-[#00F5FF]">My Work.</span>
                       </span>
-                      <span className="text-[#8B8FA8] text-[10px] sm:text-xs tracking-[2px] text-center sm:text-left block">
+                      <span className="text-[#8B8FA8] text-[10px] sm:text-xs tracking-[2px] text-center sm:text-left block md:pl-12 md:mt-4">
                         CRAFTING DIGITAL EXPERIENCES THROUGH PRECISION CODE.
                       </span>
                 </div>
@@ -917,10 +791,10 @@ export default () => {
                   <div className="flex flex-col shrink-0 items-start bg-[#0D112012] p-8 gap-2 rounded-2xl border border-solid border-[#00F5FF]">
                     <span className="text-[#00F5FF] text-[10px]">AUG 2024 - PRESENT</span>
                     <span className="text-[#F0EDE8] text-lg font-bold">
-                      Senior Full Stack Laravel Developer
+                      Senior Full Stack  Developer
                     </span>
                     <span className="text-[#8B8FA8] text-sm w-[340px] leading-6">
-                      Leading backend development of scalable Laravel applications, optimizing databases, and integrating REST APIs with third-party services at MentorSol.
+                      Leading full stack development using Laravel, Node.js, and React.js, building scalable applications, optimizing databases, and integrating REST APIs with third-party services at MentorSol.
                     </span>
                   </div>
                   <div className="bg-[#00F5FF] w-4 h-4 rounded-full border-4 border-[#080B12]" style={{ boxShadow: "0px 0px 15px #00F5FF" }} />
